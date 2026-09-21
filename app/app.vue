@@ -1,0 +1,82 @@
+<script setup lang="ts">
+import { analyticsEvents } from '~/config/analytics'
+
+const headerHidden = ref(false)
+const headerScrolled = ref(false)
+const route = useRoute()
+
+onMounted(() => {
+  const mobile = window.matchMedia('(max-width: 620px)')
+  let previousY = window.scrollY
+  let directionStart = previousY
+  let previousDirection = 0
+
+  const updateHeader = (): void => {
+    const currentY = Math.max(0, Math.min(window.scrollY, document.documentElement.scrollHeight - window.innerHeight))
+    const direction = Math.sign(currentY - previousY)
+    headerScrolled.value = currentY > 8
+
+    if (direction !== 0 && direction !== previousDirection) {
+      directionStart = previousY
+      previousDirection = direction
+    }
+
+    if (!mobile.matches || currentY <= 96) {
+      headerHidden.value = false
+      directionStart = currentY
+    } else if (Math.abs(currentY - directionStart) >= 24) {
+      headerHidden.value = direction > 0
+    }
+
+    previousY = currentY
+  }
+
+  window.addEventListener('scroll', updateHeader, { passive: true })
+  mobile.addEventListener('change', updateHeader)
+  updateHeader()
+
+  onBeforeUnmount(() => {
+    window.removeEventListener('scroll', updateHeader)
+    mobile.removeEventListener('change', updateHeader)
+  })
+})
+
+watch(() => route.fullPath, () => {
+  headerHidden.value = false
+})
+
+if (import.meta.dev) {
+  useHead({ script: [{ src: 'https://mcp.figma.com/mcp/html-to-design/capture.js', async: true }] })
+}
+</script>
+
+<template>
+  <NuxtRouteAnnouncer />
+  <SignatureCursor />
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" :class="{ 'site-header--hidden': headerHidden, 'site-header--scrolled': headerScrolled }" @focusin="headerHidden = false">
+    <NuxtLink class="site-logo type-brand" to="/" aria-label="Kolos Káposzta — home"><BrandWordmark variant="header" /></NuxtLink>
+    <nav class="site-nav type-nav" aria-label="Main navigation">
+      <NuxtLink to="/#work">Work</NuxtLink>
+      <NuxtLink to="/about">About</NuxtLink>
+      <NuxtLink class="site-nav__contact" to="/#contact" :data-umami-event="analyticsEvents.contactClick">Contact <span aria-hidden="true">↗</span></NuxtLink>
+    </nav>
+  </header>
+
+  <NuxtPage />
+
+  <footer class="site-footer page-frame">
+    <div v-if="route.path !== '/'">
+      <p class="eyebrow type-meta">Have something in mind?</p>
+      <NuxtLink class="footer-contact type-footer-title" to="/#contact" :data-umami-event="analyticsEvents.contactClick">Let’s talk <span aria-hidden="true">↗</span></NuxtLink>
+    </div>
+    <div class="footer-bottom type-caption">
+      <span>© {{ new Date().getFullYear() }} Kolos Káposzta</span>
+      <div class="footer-links type-nav">
+        <a href="https://github.com/koloskaposzta" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        <a href="https://www.linkedin.com/in/kolos-k%C3%A1poszta-04891421a/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+      </div>
+    </div>
+  </footer>
+</template>

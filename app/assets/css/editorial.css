@@ -1,0 +1,241 @@
+.site-header {
+  border-bottom: 0;
+}
+
+.site-nav a,
+.footer-links a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+}
+
+.site-nav .site-nav__contact {
+  gap: 0.8rem;
+  padding-inline: 1rem;
+  border: 1px solid var(--ink);
+  color: var(--paper);
+  background: var(--ink);
+}
+
+.site-nav .site-nav__contact:is(:hover, :focus-visible) {
+  color: var(--ink);
+  background: var(--paper);
+  text-decoration: none;
+}
+
+.editorial-hero {
+  position: relative;
+  isolation: isolate;
+  color: var(--paper);
+  background: var(--accent);
+}
+
+.editorial-hero__inner {
+  position: relative;
+  padding-block: 2rem;
+}
+
+.hero-atmosphere {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.editorial-hero__title {
+  margin: clamp(3.5rem, 6vw, 6rem) 0 clamp(3rem, 5vw, 5rem);
+}
+
+.editorial-hero__title span {
+  display: block;
+}
+
+.editorial-hero__title span:nth-child(2) {
+  margin-left: 24%;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--signal);
+}
+
+.editorial-hero__title span:last-child {
+  margin-top: 0.08em;
+}
+
+.editorial-hero__bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: end;
+  gap: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgb(255 255 255 / 40%);
+}
+
+.editorial-hero__bottom p {
+  margin: 0;
+}
+
+.editorial-hero__down {
+  display: grid;
+  width: 3.5rem;
+  min-height: 3.5rem;
+  place-items: center;
+  border: 1px solid currentcolor;
+  color: var(--ink);
+  background: var(--paper);
+  font-size: 2rem;
+  transition: color var(--duration-fast), background var(--duration-fast);
+}
+
+.editorial-hero__down:is(:hover, :focus-visible) {
+  color: var(--paper);
+  background: var(--ink);
+}
+
+.editorial-hero a:focus-visible {
+  outline-color: var(--signal);
+}
+
+.signature-motion__static {
+  display: none;
+}
+
+.work-section {
+  padding-block: var(--space-section);
+}
+
+.featured-project {
+  padding-top: 1rem;
+  border-top: 1px solid var(--ink);
+}
+
+.featured-project__heading,
+.featured-project__footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.featured-project__body {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  align-items: center;
+  gap: 3rem;
+  margin-block: 2rem;
+}
+
+.featured-project h3 {
+  margin: 0;
+}
+
+.featured-project__description {
+  margin-top: 2rem;
+}
+
+.featured-project__placeholder {
+  display: flex;
+  min-height: 23rem;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-between;
+  padding: clamp(1.25rem, 3vw, 3rem);
+  color: var(--paper);
+  background: var(--ink);
+}
+
+.featured-project__placeholder-index {
+  align-self: end;
+  color: var(--signal);
+}
+
+.featured-project__footer {
+  align-items: center;
+  padding-block: 1rem;
+  border-block: 1px solid var(--line);
+}
+
+.featured-project__footer p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.archive-heading {
+  padding-block: 4rem 1.5rem;
+}
+
+.project-card__link {
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+}
+
+.project-card__image {
+  min-height: 0;
+}
+
+@media (max-width: 900px) {
+  .type-hero-title {
+    font-size: 11.2vw;
+  }
+
+  .featured-project__body {
+    gap: 1.5rem;
+  }
+
+  .featured-project__placeholder {
+    min-height: 20rem;
+  }
+}
+
+@media (max-width: 620px) {
+  .editorial-hero__inner {
+    padding-block: 1.5rem;
+  }
+
+  .editorial-hero__title {
+    margin-block: 4rem;
+  }
+
+  .type-hero-title {
+    font-size: clamp(3.1rem, 11.8vw, 4.6rem);
+    line-height: 1;
+  }
+
+  .editorial-hero__title span:nth-child(2) {
+    margin-left: 13%;
+  }
+
+  .editorial-hero__bottom {
+    grid-template-columns: auto 1fr;
+  }
+
+  .featured-project__heading,
+  .featured-project__footer {
+    flex-direction: column;
+    align-items: start;
+  }
+
+  .featured-project__body,
+  .project-card__link {
+    grid-template-columns: 1fr;
+  }
+
+  .featured-project__body {
+    gap: 1rem;
+  }
+
+  .featured-project__placeholder {
+    min-height: 19rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .editorial-hero__down {
+    transition: none;
+  }
+
+  .signature-motion__animated {
+    display: none;
+  }
+
+  .signature-motion__static {
+    display: block;
+  }
+}
