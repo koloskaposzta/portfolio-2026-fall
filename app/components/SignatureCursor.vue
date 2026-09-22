@@ -7,7 +7,7 @@ const active = ref(false)
 
 onMounted(() => {
   const preference = window.matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)')
-  const magneticSelector = '.site-nav a, .footer-links a, .text-link, .action-link, .editorial-hero__down'
+  const magneticSelector = '.site-nav a, .footer-links a, .text-link, .action-link, .editorial-hero__down, .contact-form__privacy'
   let magnetic: HTMLElement | null = null
   let frame = 0
   let pointerX = 0
@@ -29,8 +29,8 @@ onMounted(() => {
   const renderPointer = (): void => {
     frame = 0
     const target = document.elementFromPoint(pointerX, pointerY)
-    const link = target?.closest('a, button')
-    const editable = target?.closest('input, textarea, select, [contenteditable="true"]')
+    const interactive = target?.closest('a, button, label')
+    const editable = target?.closest('input:not([type="checkbox"]), textarea, select, [contenteditable="true"]')
 
     if (!target || editable) {
       hide()
@@ -38,9 +38,9 @@ onMounted(() => {
     }
 
     label.value = target.closest('[data-cursor="drag"]') ? 'DRAG'
-      : link?.matches('.project-card__link, .next-project') && !target.closest('.text-link') ? 'VIEW'
-      : link?.matches('[target="_blank"], [href^="mailto:"]') ? '↗' : ''
-    expanded.value = Boolean(link || label.value)
+      : interactive?.matches('.project-card__link, .next-project') && !target.closest('.text-link') ? 'VIEW'
+      : interactive?.matches('[target="_blank"], [href^="mailto:"]') ? '↗' : ''
+    expanded.value = Boolean(interactive || label.value)
     cursor.value?.style.setProperty('translate', `${pointerX}px ${pointerY}px`)
     active.value = true
     document.documentElement.classList.add('signature-cursor-active')
@@ -146,7 +146,7 @@ onMounted(() => {
     height: 64px;
   }
 
-  :is(.site-nav a, .footer-links a, .text-link, .action-link, .editorial-hero__down) {
+  :is(.site-nav a, .footer-links a, .text-link, .action-link, .editorial-hero__down, .contact-form__privacy) {
     transition: color 160ms ease, background 160ms ease, translate 160ms ease;
   }
 }
