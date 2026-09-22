@@ -1,7 +1,11 @@
 <script setup lang="ts">
 useSeoMeta({
   title: 'About — Kolos Káposzta',
-  description: 'UI/UX designer and front-end developer, with a background in enterprise products and Digital Product Design studies at MOME Open.'
+  description: 'UI/UX designer and front-end developer, with a background in enterprise products and Digital Product Design studies at MOME Open.',
+  ogTitle: 'About Kolos Káposzta',
+  ogDescription: 'UI/UX designer and front-end developer, with a background in enterprise products and Digital Product Design studies at MOME Open.',
+  twitterTitle: 'About Kolos Káposzta',
+  twitterDescription: 'UI/UX designer and front-end developer, with a background in enterprise products and Digital Product Design studies at MOME Open.'
 })
 </script>
 

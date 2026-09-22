@@ -9,8 +9,14 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
+      siteUrl: 'https://koloskaposzta.com',
       umamiWebsiteId: '',
       umamiScriptUrl: 'https://cloud.umami.is/script.js'
+    }
+  },
+  nitro: {
+    prerender: {
+      routes: ['/sitemap.xml', '/llms.txt']
     }
   },
   typescript: {

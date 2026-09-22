@@ -4,6 +4,56 @@ import { analyticsEvents } from '~/config/analytics'
 const headerHidden = ref(false)
 const headerScrolled = ref(false)
 const route = useRoute()
+const config = useRuntimeConfig()
+const siteUrl = config.public.siteUrl.replace(/\/$/, '')
+const canonicalUrl = computed(() => `${siteUrl}${route.path === '/' ? '' : route.path}`)
+
+useSeoMeta({
+  titleTemplate: title => title ? `${title}` : 'Kolos Káposzta — Product designer',
+  ogSiteName: 'Kolos Káposzta',
+  ogType: 'website',
+  ogLocale: 'en_US',
+  ogUrl: () => canonicalUrl.value,
+  twitterCard: 'summary_large_image',
+  twitterTitle: 'Kolos Káposzta — Product designer',
+  twitterDescription: 'Selected product design work by Kolos Káposzta, a designer with a front-end development background.',
+  robots: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'
+})
+
+useHead({
+  link: [{ rel: 'canonical', href: () => canonicalUrl.value }],
+  script: [{
+    type: 'application/ld+json',
+    innerHTML: JSON.stringify({
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Person',
+          '@id': `${siteUrl}/#person`,
+          name: 'Kolos Káposzta',
+          url: siteUrl,
+          jobTitle: 'Product designer and front-end developer',
+          sameAs: [
+            'https://github.com/koloskaposzta',
+            'https://www.linkedin.com/in/kolos-k%C3%A1poszta-04891421a/'
+          ],
+          alumniOf: {
+            '@type': 'EducationalOrganization',
+            name: 'MOME Open'
+          }
+        },
+        {
+          '@type': 'WebSite',
+          '@id': `${siteUrl}/#website`,
+          url: siteUrl,
+          name: 'Kolos Káposzta — Product designer',
+          inLanguage: 'en',
+          author: { '@id': `${siteUrl}/#person` }
+        }
+      ]
+    })
+  }]
+})
 
 onMounted(() => {
   const mobile = window.matchMedia('(max-width: 620px)')

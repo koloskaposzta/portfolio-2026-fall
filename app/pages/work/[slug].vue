@@ -24,7 +24,15 @@ const nextStudy = computed(() => getNextCaseStudy(study.value.slug))
 
 useSeoMeta({
   title: () => `${study.value.title} — Kolos Káposzta`,
-  description: () => study.value.summary
+  description: () => study.value.summary,
+  ogTitle: () => `${study.value.title} — Product design case study`,
+  ogDescription: () => study.value.summary,
+  ogType: 'article',
+  ogImage: () => `https://koloskaposzta.com${study.value.cover.src}`,
+  ogImageAlt: () => study.value.cover.alt,
+  twitterTitle: () => `${study.value.title} — Product design case study`,
+  twitterDescription: () => study.value.summary,
+  twitterImage: () => `https://koloskaposzta.com${study.value.cover.src}`
 })
 
 const trackReadingMidpoint = (): void => {

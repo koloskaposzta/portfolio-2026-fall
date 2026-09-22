@@ -3,7 +3,14 @@ import { caseStudies } from '~/data/caseStudies'
 
 useSeoMeta({
   title: 'Kolos Káposzta — Product designer',
-  description: 'Selected product design work by Kolos Káposzta, a designer with a front-end development background.'
+  description: 'Selected product design work by Kolos Káposzta, a designer with a front-end development background.',
+  ogTitle: 'Kolos Káposzta — Product designer',
+  ogDescription: 'Selected product design work by Kolos Káposzta, a designer with a front-end development background.',
+  ogImage: 'https://koloskaposzta.com/work/learning-cover.png',
+  ogImageAlt: 'Selected product design work by Kolos Káposzta',
+  twitterTitle: 'Kolos Káposzta — Product designer',
+  twitterDescription: 'Selected product design work by Kolos Káposzta, a designer with a front-end development background.',
+  twitterImage: 'https://koloskaposzta.com/work/learning-cover.png'
 })
 </script>
 
