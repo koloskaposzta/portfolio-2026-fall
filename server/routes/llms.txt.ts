@@ -12,6 +12,7 @@ Kolos Káposzta is a Budapest-based product and UI/UX designer with a front-end 
 
 - [Portfolio](${siteUrl}/): Selected product design work and contact form.
 - [About](${siteUrl}/about): Background in enterprise software, front-end development, and Digital Product Design studies at MOME Open.
+- [Privacy](${siteUrl}/privacy): How contact-form information and anonymous website analytics are handled.
 ${createCaseStudyLinks(siteUrl)}
 
 ## Profiles

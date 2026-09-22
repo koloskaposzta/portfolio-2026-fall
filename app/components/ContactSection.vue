@@ -19,6 +19,11 @@
         <label class="type-label" for="contact-message">Message</label>
         <textarea id="contact-message" name="message" rows="6" placeholder="Hi Kolos, we have a suspiciously good opportunity for you…" required />
       </div>
+      <label class="contact-form__privacy type-caption" for="contact-privacy">
+        <input id="contact-privacy" name="privacyAcknowledged" type="checkbox" required>
+        <span class="contact-form__checkbox" aria-hidden="true" />
+        <span>I have read the <NuxtLink to="/privacy">privacy notice</NuxtLink>.</span>
+      </label>
       <div>
         <button class="contact-form__submit action-link type-nav" type="submit" disabled aria-describedby="contact-status">Send message <span aria-hidden="true">↗</span></button>
         <p id="contact-status" class="type-caption">Message sending will be available soon.</p>
@@ -78,6 +83,56 @@
   outline-offset: 3px;
 }
 
+.contact-form__privacy {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+}
+
+.contact-form__privacy input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.contact-form__checkbox {
+  display: grid;
+  width: 1.25rem;
+  height: 1.25rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+}
+
+.contact-form__privacy input:checked + .contact-form__checkbox {
+  background: var(--ink);
+}
+
+.contact-form__privacy input:checked + .contact-form__checkbox::after {
+  width: 0.35rem;
+  height: 0.65rem;
+  border: solid var(--paper);
+  border-width: 0 2px 2px 0;
+  content: '';
+  transform: translateY(-0.05rem) rotate(45deg);
+}
+
+.contact-form__privacy input:focus-visible + .contact-form__checkbox {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.contact-form__privacy a {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
 .contact-form__submit:disabled {
   color: var(--muted);
   background: var(--paper);
@@ -88,6 +143,12 @@
 
 #contact-status {
   color: var(--muted);
+}
+
+#contact-status a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
 }
 
 @media (max-width: 900px) {

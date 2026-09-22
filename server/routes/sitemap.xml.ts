@@ -26,6 +26,7 @@ export default defineEventHandler((event): string => {
   const pages: readonly SitemapPage[] = [
     { path: '/', priority: '1.0' },
     { path: '/about', priority: '0.8' },
+    { path: '/privacy', priority: '0.4' },
     ...caseStudies.map(study => ({ path: `/work/${study.slug}`, priority: '0.9' }))
   ]
 

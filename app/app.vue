@@ -124,6 +124,7 @@ if (import.meta.dev) {
     <div class="footer-bottom type-caption">
       <span>© {{ new Date().getFullYear() }} Kolos Káposzta</span>
       <div class="footer-links type-nav">
+        <NuxtLink to="/privacy">Privacy</NuxtLink>
         <a href="https://github.com/koloskaposzta" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
         <a href="https://www.linkedin.com/in/kolos-k%C3%A1poszta-04891421a/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
       </div>
