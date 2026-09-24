@@ -32,6 +32,9 @@
 
 .editorial-hero__inner {
   position: relative;
+  display: flex;
+  min-height: clamp(36rem, 70svh, 52rem);
+  flex-direction: column;
   padding-block: 2rem;
 }
 
@@ -44,25 +47,26 @@
 }
 
 .editorial-hero__title {
-  margin: clamp(3.5rem, 6vw, 6rem) 0 clamp(3rem, 5vw, 5rem);
+  margin: clamp(2rem, 3vw, 3rem) 0;
 }
 
-.editorial-hero__title span {
+.editorial-hero__title > span {
   display: block;
+  margin-top: 0.3em;
 }
 
-.editorial-hero__title span:nth-child(2) {
-  margin-left: 24%;
+.editorial-hero__title > span:first-child {
+  margin-top: 0;
+}
+
+.editorial-hero__outlined {
   color: transparent;
   -webkit-text-stroke: 1.5px var(--signal);
 }
 
-.editorial-hero__title span:last-child {
-  margin-top: 0.08em;
-}
-
 .editorial-hero__bottom {
   display: grid;
+  margin-top: auto;
   grid-template-columns: 1fr 1fr 1fr;
   align-items: end;
   gap: 2rem;
@@ -71,11 +75,17 @@
 }
 
 .editorial-hero__bottom p {
+  grid-column: 1 / 3;
+  grid-row: 1;
+  max-width: 38rem;
   margin: 0;
 }
 
 .editorial-hero__down {
   display: grid;
+  grid-column: 3;
+  grid-row: 1;
+  justify-self: end;
   width: 3.5rem;
   min-height: 3.5rem;
   place-items: center;
@@ -101,6 +111,83 @@
 
 .work-section {
   padding-block: var(--space-section);
+}
+
+.project-card--preview {
+  margin-block: clamp(2rem, 4vw, 3.5rem);
+  border-top: 0;
+}
+
+.project-card__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(2rem, 5vw, 6rem);
+  padding-block: clamp(2rem, 3vw, 3rem);
+  border-style: solid;
+  border-width: 20px;
+  border-image: repeating-linear-gradient(
+    45deg,
+    var(--ink) 0 12px,
+    var(--paper) 12px 24px
+  ) 20;
+}
+
+.project-card__preview {
+  width: calc(100% - clamp(3rem, 8vw, 6rem));
+  min-width: 8rem;
+  min-height: 0;
+  aspect-ratio: 1.65;
+  margin: clamp(1rem, 3vw, 2.5rem) auto;
+  background: var(--ink);
+  animation: preview-morph 4s ease-in-out infinite;
+}
+
+.project-card__preview:hover {
+  animation-play-state: paused;
+  background: var(--ink);
+}
+
+@keyframes preview-morph {
+  0%,
+  100% {
+    background: var(--ink);
+  }
+
+  50% {
+    background: var(--paper);
+  }
+}
+
+.project-card--preview .project-card__summary {
+  max-width: 26rem;
+  margin-bottom: 0.8rem;
+}
+
+.project-card--preview .project-card__roles {
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
+.project-card__status {
+  cursor: default;
+  pointer-events: none;
+}
+
+.home-about {
+  padding-block: var(--space-section);
+}
+
+.home-about h2,
+.home-about p {
+  margin: 0;
+}
+
+.home-about__content {
+  display: flex;
+  max-width: 42rem;
+  flex-direction: column;
+  align-items: start;
+  gap: 1.5rem;
 }
 
 .featured-project {
@@ -171,8 +258,8 @@
 }
 
 @media (max-width: 900px) {
-  .type-hero-title {
-    font-size: 11.2vw;
+  .project-card__layout {
+    grid-template-columns: 1fr;
   }
 
   .featured-project__body {
@@ -182,28 +269,41 @@
   .featured-project__placeholder {
     min-height: 20rem;
   }
+
+  .project-card__preview {
+    min-height: 0;
+    width: 45%;
+    aspect-ratio: auto;
+    height: clamp(8rem, 30vw, 14rem);
+  }
 }
 
 @media (max-width: 620px) {
+  .project-card__layout {
+    border-width: 12px;
+    border-image: repeating-linear-gradient(
+      45deg,
+      var(--ink) 0 8px,
+      var(--paper) 8px 16px
+    ) 12;
+  }
+
   .editorial-hero__inner {
     padding-block: 1.5rem;
   }
 
-  .editorial-hero__title {
-    margin-block: 4rem;
-  }
-
-  .type-hero-title {
-    font-size: clamp(3.1rem, 11.8vw, 4.6rem);
-    line-height: 1;
-  }
-
-  .editorial-hero__title span:nth-child(2) {
-    margin-left: 13%;
-  }
-
   .editorial-hero__bottom {
-    grid-template-columns: auto 1fr;
+    grid-template-columns: 1fr;
+  }
+
+  .editorial-hero__down {
+    grid-column: 1;
+    grid-row: 2;
+    justify-self: start;
+  }
+
+  .editorial-hero__bottom p {
+    grid-column: 1;
   }
 
   .featured-project__heading,
@@ -213,7 +313,8 @@
   }
 
   .featured-project__body,
-  .project-card__link {
+  .project-card__link,
+  .project-card__layout {
     grid-template-columns: 1fr;
   }
 
@@ -227,6 +328,11 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .project-card__preview {
+    animation: none;
+    background: var(--ink);
+  }
+
   .editorial-hero__down {
     transition: none;
   }

@@ -20,17 +20,17 @@ useSeoMeta({
 
     <section id="work" class="work-section page-frame" aria-labelledby="work-title">
       <div class="section-topline">
-        <p class="eyebrow type-meta">01 / Work</p>
         <h2 id="work-title" class="type-section-title">Selected projects<span class="period">.</span></h2>
       </div>
 
-      <article v-for="(study, index) in caseStudies" :key="study.slug" class="project-card">
+      <CurrentSideProject />
+
+      <article v-for="study in caseStudies" :key="study.slug" class="project-card">
         <NuxtLink class="project-card__link" :to="`/work/${study.slug}`">
           <div class="project-card__image">
             <img :src="study.cover.src" :alt="study.cover.alt" loading="lazy">
           </div>
           <div class="project-card__content">
-            <span class="project-card__number type-label">0{{ index + 1 }}</span>
             <div>
               <p class="project-card__category type-label">{{ study.category }}</p>
               <h3 class="type-project-title">{{ study.title }}</h3>
@@ -40,6 +40,16 @@ useSeoMeta({
           </div>
         </NuxtLink>
       </article>
+    </section>
+
+    <section class="home-about page-frame" aria-labelledby="home-about-title">
+      <div class="section-topline">
+        <h2 id="home-about-title" class="type-section-title">About me<span class="period">.</span></h2>
+      </div>
+      <div class="home-about__content">
+        <p class="type-body">My front-end background shapes how I approach product design. Building a complex enterprise app taught me to care about clear structure, practical constraints, and interfaces that are easy to understand.</p>
+        <NuxtLink class="action-link type-nav" to="/about">More about me <span aria-hidden="true">↗</span></NuxtLink>
+      </div>
     </section>
 
     <ContactSection />

@@ -14,7 +14,7 @@ useSeoMeta({
     <header class="privacy-page__header">
       <p class="eyebrow type-meta">Privacy</p>
       <h1 class="type-section-title">Privacy notice<span class="period">.</span></h1>
-      <p class="type-caption">Last updated: 22 September 2026</p>
+      <p class="type-caption">Last updated: 24 September 2026</p>
     </header>
 
     <div class="privacy-page__content type-body">

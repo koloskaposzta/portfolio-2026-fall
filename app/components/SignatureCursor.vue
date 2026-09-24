@@ -38,6 +38,7 @@ onMounted(() => {
     }
 
     label.value = target.closest('[data-cursor="drag"]') ? 'DRAG'
+      : target.closest('.project-card--preview') && !interactive ? 'WIP'
       : interactive?.matches('.project-card__link, .next-project') && !target.closest('.text-link') ? 'VIEW'
       : interactive?.matches('[target="_blank"], [href^="mailto:"]') ? '↗' : ''
     expanded.value = Boolean(interactive || label.value)

@@ -1,7 +1,6 @@
 <template>
   <section id="contact" class="contact-section page-frame" aria-labelledby="contact-title">
     <div class="contact-section__intro">
-      <p class="eyebrow type-meta">02 / Contact</p>
       <h2 id="contact-title" class="type-section-title">Let’s talk<span class="period">.</span></h2>
       <p class="type-body-lg">A role, a project, or a good conversation.<br>I’m all ears.</p>
     </div>
@@ -17,7 +16,7 @@
       </div>
       <div class="contact-form__field">
         <label class="type-label" for="contact-message">Message</label>
-        <textarea id="contact-message" name="message" rows="6" placeholder="Hi Kolos, we have a suspiciously good opportunity for you…" required />
+        <textarea id="contact-message" name="message" rows="6" placeholder="Dear Kolos, I'm very grateful to find you! You must be talented and also a wonderful person to work with. We would love to have you on our team, where you can contribute your skills and grow professionally! I can't believe no one has approached you yet… Lets schedule a meeting!" required />
       </div>
       <label class="contact-form__privacy type-caption" for="contact-privacy">
         <input id="contact-privacy" name="privacyAcknowledged" type="checkbox" required>
@@ -42,7 +41,7 @@
 }
 
 .contact-section__intro h2 {
-  margin: 1.5rem 0;
+  margin: 0 0 1.5rem;
 }
 
 .contact-form,
