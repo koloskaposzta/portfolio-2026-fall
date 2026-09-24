@@ -4,6 +4,7 @@ const label = ref('')
 const expanded = ref(false)
 const route = useRoute()
 const active = ref(false)
+const intro = ref(false)
 
 onMounted(() => {
   const preference = window.matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)')
@@ -12,6 +13,8 @@ onMounted(() => {
   let frame = 0
   let pointerX = 0
   let pointerY = 0
+  let introDone = false
+  let introTimer = 0
 
   const resetMagnet = (): void => {
     magnetic?.style.removeProperty('translate')
@@ -45,6 +48,15 @@ onMounted(() => {
     cursor.value?.style.setProperty('translate', `${pointerX}px ${pointerY}px`)
     active.value = true
     document.documentElement.classList.add('signature-cursor-active')
+
+    if (!introDone && preference.matches) {
+      introDone = true
+      intro.value = true
+      introTimer = window.setTimeout(() => {
+        intro.value = false
+        introTimer = 0
+      }, 900)
+    }
 
     const nextMagnetic = target.closest<HTMLElement>(magneticSelector)
     if (nextMagnetic !== magnetic) {
@@ -90,6 +102,7 @@ onMounted(() => {
   onBeforeUnmount(() => {
     hide()
     stopRouteWatch()
+    if (introTimer) window.clearTimeout(introTimer)
     window.removeEventListener('pointermove', move)
     document.documentElement.removeEventListener('pointerleave', hide)
     window.removeEventListener('blur', hide)
@@ -102,7 +115,7 @@ onMounted(() => {
 
 <template>
   <Teleport to="body">
-    <div ref="cursor" class="signature-cursor" :class="{ 'signature-cursor--active': active, 'signature-cursor--expanded': expanded }" aria-hidden="true">
+    <div ref="cursor" class="signature-cursor" :class="{ 'signature-cursor--active': active, 'signature-cursor--expanded': expanded, 'signature-cursor--intro': intro }" aria-hidden="true">
       {{ label }}
     </div>
   </Teleport>
@@ -145,6 +158,23 @@ onMounted(() => {
   .signature-cursor--expanded {
     width: 64px;
     height: 64px;
+  }
+
+  .signature-cursor--intro {
+    animation: cursor-pulse 0.9s ease-in-out forwards;
+  }
+
+  @keyframes cursor-pulse {
+    0%,
+    100% {
+      width: 20px;
+      height: 20px;
+    }
+
+    50% {
+      width: 56px;
+      height: 56px;
+    }
   }
 
   :is(.site-nav a, .footer-links a, .text-link, .action-link, .editorial-hero__down, .contact-form__privacy) {
