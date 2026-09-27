@@ -8,10 +8,22 @@ export default defineNuxtConfig({
     }
   },
   runtimeConfig: {
+    altchaHmacKey: '',
+    resendApiKey: '',
+    contactFrom: '',
+    contactTo: '',
+    upstashRedisRestUrl: '',
+    upstashRedisRestToken: '',
     public: {
+      contactEnabled: false,
       siteUrl: 'https://koloskaposzta.com',
       umamiWebsiteId: '',
       umamiScriptUrl: 'https://cloud.umami.is/script.js'
+    }
+  },
+  vue: {
+    compilerOptions: {
+      isCustomElement: (tag: string): boolean => tag === 'altcha-widget'
     }
   },
   nitro: {

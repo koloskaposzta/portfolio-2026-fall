@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const contactEnabled = useRuntimeConfig().public.contactEnabled
+
 useSeoMeta({
   title: 'Privacy notice — Kolos Káposzta',
   description: 'How personal information and anonymous website analytics are handled on the portfolio of Kolos Káposzta.',
@@ -14,21 +16,30 @@ useSeoMeta({
     <header class="privacy-page__header">
       <p class="eyebrow type-meta">Privacy</p>
       <h1 class="type-section-title">Privacy notice<span class="period">.</span></h1>
-      <p class="type-caption">Last updated: 24 September 2026</p>
+      <p class="type-caption">Last updated: 27 September 2026</p>
     </header>
 
     <div class="privacy-page__content type-body">
       <section aria-labelledby="overview-title">
         <h2 id="overview-title" class="type-heading-md">Overview</h2>
         <p>This portfolio is operated by Kolos Káposzta in Budapest, Hungary. This notice explains how information is handled when you browse the site or contact me.</p>
-        <p>The contact form is currently disabled. It does not submit or store anything. The notice below describes how it is intended to work and will be updated with the selected service providers before the form is enabled.</p>
+        <p>For enquiries or privacy requests, email <a href="mailto:kap.kolos@gmail.com">kap.kolos@gmail.com</a>.</p>
+        <p v-if="!contactEnabled">The contact form is currently disabled and does not submit information. The form-related processing described below applies when message sending is enabled. You can still contact me by email.</p>
       </section>
 
       <section aria-labelledby="contact-data-title">
         <h2 id="contact-data-title" class="type-heading-md">Contact enquiries</h2>
-        <p>When the form is enabled, it will collect the name, email address, and message you choose to provide. Please do not include sensitive personal information that is unnecessary for your enquiry.</p>
-        <p>The information will be used to read, respond to, and follow up on your enquiry. The legal basis will be legitimate interests under Article 6(1)(f) GDPR—communicating with people who contact me—or Article 6(1)(b) when your message asks me to take steps before entering into a contract.</p>
+        <p>When you send an enquiry, I receive the name, email address, and message you provide. The contact form requires these fields to send your message. Please do not include sensitive personal information that is unnecessary for your enquiry.</p>
+        <p>I use this information to read, respond to, and follow up on your enquiry. The legal basis is legitimate interests under Article 6(1)(f) GDPR—communicating with people who contact me—or Article 6(1)(b) when your message asks me to take steps before entering into a contract. The privacy checkbox acknowledges this notice; it is not consent to marketing.</p>
+        <p>Form messages are sent through Resend to my Gmail inbox. The website does not maintain a separate database of messages. Resend processes the message and delivery information, and Google stores the email and subsequent correspondence.</p>
         <p>Enquiry data will normally be deleted within 12 months after the conversation ends. It may be kept longer when reasonably necessary to establish, exercise, or defend legal claims, or to comply with a legal obligation.</p>
+      </section>
+
+      <section aria-labelledby="security-title">
+        <h2 id="security-title" class="type-heading-md">Spam protection and hosting</h2>
+        <p>The contact form uses the open-source ALTCHA widget, served by this website. Your browser solves a computational challenge, and the website verifies the result before accepting a message. This integration does not send your message to ALTCHA or use tracking cookies.</p>
+        <p>Upstash Redis stores temporary challenge identifiers to prevent reuse, together with request counters linked to a keyed hash of your IP address to limit repeated requests. It does not receive your name, email address, message, or raw IP address from the form handler. These security entries expire within 20 minutes.</p>
+        <p>Vercel hosts the website and processes technical request information, including IP addresses, requested URLs, and browser information, to deliver and secure it. Hosting and security processing is based on legitimate interests under Article 6(1)(f) GDPR: operating the website and preventing abuse.</p>
       </section>
 
       <section aria-labelledby="analytics-title">
@@ -39,14 +50,14 @@ useSeoMeta({
 
       <section aria-labelledby="sharing-title">
         <h2 id="sharing-title" class="type-heading-md">Service providers and transfers</h2>
-        <p>Technical providers may process limited information on my behalf to host the website, deliver contact messages, or provide analytics. The contact-form and messaging providers will be identified here before submission is activated.</p>
-        <p>Personal information is not sold. If a provider processes information outside the European Economic Area, an appropriate GDPR transfer mechanism will be required, such as an adequacy decision or Standard Contractual Clauses.</p>
+        <p>The selected providers are <a href="https://vercel.com/legal/privacy-notice" target="_blank" rel="noopener noreferrer">Vercel</a> for hosting, <a href="https://resend.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Resend</a> for form email delivery, <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Gmail</a> for correspondence, <a href="https://upstash.com/trust/privacy.pdf" target="_blank" rel="noopener noreferrer">Upstash</a> for temporary abuse-prevention records, and <a href="https://umami.is/privacy" target="_blank" rel="noopener noreferrer">Umami Cloud</a> for analytics. ALTCHA runs as part of this website rather than a hosted verification service.</p>
+        <p>Personal information is not sold. Providers may process information outside the European Economic Area, including in the United States. Applicable safeguards may include adequacy decisions or Standard Contractual Clauses, depending on the provider and service. You can request information about the safeguards applicable to your enquiry by emailing me.</p>
       </section>
 
       <section aria-labelledby="rights-title">
         <h2 id="rights-title" class="type-heading-md">Your rights</h2>
-        <p>Depending on the circumstances, you may request access to, correction of, deletion of, or restriction of your personal information, and you may object to processing based on legitimate interests. You may also have a right to data portability. Requests can be made through the contact form once it is enabled.</p>
-        <p>No automated decision-making or profiling is used. You may lodge a complaint with the Hungarian National Authority for Data Protection and Freedom of Information (NAIH) or another competent supervisory authority.</p>
+        <p>Depending on the circumstances, you may request access to, correction of, deletion of, or restriction of your personal information, and you may object to processing based on legitimate interests. You may also have a right to data portability. Send requests to <a href="mailto:kap.kolos@gmail.com">kap.kolos@gmail.com</a>.</p>
+        <p>No automated decisions with legal or similarly significant effects are made about you. Automated spam checks may reject a form submission; you can contact me directly by email instead. You may lodge a complaint with the Hungarian National Authority for Data Protection and Freedom of Information (NAIH) or another competent supervisory authority.</p>
         <a class="text-link type-link" href="https://www.naih.hu/data-protection/investigation-by-the-authority" target="_blank" rel="noopener noreferrer">Contact NAIH <span aria-hidden="true">↗</span></a>
       </section>
 
