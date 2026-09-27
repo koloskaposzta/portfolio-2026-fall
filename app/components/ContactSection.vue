@@ -11,6 +11,7 @@ type ContactPayload = Readonly<{
 const config = useRuntimeConfig()
 const submitState = ref<ContactSubmitState>('idle')
 const statusMessage = ref('Message sending will be available soon.')
+const fallbackEmail = 'kap.kolos@gmail.com'
 
 const contactEnabled = computed((): boolean => String(config.public.contactEnabled) === 'true')
 
@@ -44,7 +45,7 @@ const submitContact = async (event: Event): Promise<void> => {
 
   if (!response.ok) {
     submitState.value = 'error'
-    statusMessage.value = 'Message sending failed. Please email kap.kolos@gmail.com instead.'
+    statusMessage.value = 'Message sending failed. Please email me directly instead.'
     return
   }
 
@@ -81,7 +82,10 @@ const submitContact = async (event: Event): Promise<void> => {
       </label>
       <div>
         <button class="contact-form__submit action-link type-nav" type="submit" :disabled="!contactEnabled || submitState === 'submitting'" aria-describedby="contact-status">Send message <span aria-hidden="true">↗</span></button>
-        <p id="contact-status" class="type-caption" aria-live="polite">{{ statusMessage }}</p>
+        <p id="contact-status" class="type-caption" aria-live="polite">
+          {{ statusMessage }}
+          <a v-if="submitState === 'error'" :href="`mailto:${fallbackEmail}`">{{ fallbackEmail }}</a>
+        </p>
       </div>
     </form>
   </section>
