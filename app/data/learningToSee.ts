@@ -19,32 +19,40 @@ export const learningToSeeSections = [
         "text": "📝 Below there are sample essays for recruiters who want to try the experience without spending time writing responses from scratch."
       },
       {
-        "kind": "heading",
-        "text": "Cheat Codes"
-      },
-      {
-        "kind": "subheading",
-        "text": "Round 1"
-      },
-      {
-        "kind": "paragraph",
-        "text": "Paula Scher’s The Public Theater, 95–96 Season uses typography as both information and image. The poster feels loud, energetic, and urban because of the oversized text, tight spacing, and stacked composition. Instead of guiding the viewer through a quiet, orderly layout, it creates movement by making the eye jump between large and small typographic elements. Hierarchy is created mainly through scale. Some words immediately dominate, while smaller text adds detail and texture. Repetition helps unify the design and gives it rhythm. Even though the composition feels chaotic at first, it is actually very controlled. The arrangement of the type is deliberate, which allows the poster to feel expressive without becoming unreadable. What makes this poster so effective is that its typography communicates mood as much as message. It does not just advertise a theater season — it visually expresses something public, theatrical, and culturally alive."
-      },
-      {
-        "kind": "subheading",
-        "text": "Round 2"
-      },
-      {
-        "kind": "paragraph",
-        "text": "The poster feels playful and expressive because it combines bright color, organic shapes, and hand-drawn typography. The vivid blue background creates a strong contrast with the orange vase and neon green plant forms, making the central image stand out immediately. This bold palette gives the composition a lively and energetic mood. The plant-like figure is highly stylized, with arms, hands, and a face that make it feel animated and almost human. This creates a sense of personality and movement, as if the plant is performing or growing freely. The handwritten text surrounding the image reinforces this feeling, because it feels loose, rhythmic, and spontaneous rather than formal. Altogether, the poster communicates a cheerful and experimental visual language."
-      },
-      {
-        "kind": "subheading",
-        "text": "Round 3"
-      },
-      {
-        "kind": "paragraph",
-        "text": "The poster’s main strength lies in its extremely simple yet powerful geometric composition. The large red wedge pushes into the white circle, so the image immediately suggests movement, attack, and conflict. The strong contrast between red, white, and black makes the poster highly readable while also reinforcing its political message. The diagonal structure and asymmetrical layout create a sense of dynamism, making the composition feel active rather than static. What is especially striking is that the poster tells a story entirely through abstract forms, without showing any people or realistic scenes. This makes it an iconic example of how visual design can communicate meaning with minimal elements."
+        "kind": "toggle",
+        "title": "Cheat Codes",
+        "blocks": [
+          {
+            "kind": "toggle",
+            "title": "Round 1",
+            "blocks": [
+              {
+                "kind": "paragraph",
+                "text": "Paula Scher’s The Public Theater, 95–96 Season uses typography as both information and image. The poster feels loud, energetic, and urban because of the oversized text, tight spacing, and stacked composition. Instead of guiding the viewer through a quiet, orderly layout, it creates movement by making the eye jump between large and small typographic elements. Hierarchy is created mainly through scale. Some words immediately dominate, while smaller text adds detail and texture. Repetition helps unify the design and gives it rhythm. Even though the composition feels chaotic at first, it is actually very controlled. The arrangement of the type is deliberate, which allows the poster to feel expressive without becoming unreadable. What makes this poster so effective is that its typography communicates mood as much as message. It does not just advertise a theater season — it visually expresses something public, theatrical, and culturally alive."
+              }
+            ]
+          },
+          {
+            "kind": "toggle",
+            "title": "Round 2",
+            "blocks": [
+              {
+                "kind": "paragraph",
+                "text": "The poster feels playful and expressive because it combines bright color, organic shapes, and hand-drawn typography. The vivid blue background creates a strong contrast with the orange vase and neon green plant forms, making the central image stand out immediately. This bold palette gives the composition a lively and energetic mood. The plant-like figure is highly stylized, with arms, hands, and a face that make it feel animated and almost human. This creates a sense of personality and movement, as if the plant is performing or growing freely. The handwritten text surrounding the image reinforces this feeling, because it feels loose, rhythmic, and spontaneous rather than formal. Altogether, the poster communicates a cheerful and experimental visual language."
+              }
+            ]
+          },
+          {
+            "kind": "toggle",
+            "title": "Round 3",
+            "blocks": [
+              {
+                "kind": "paragraph",
+                "text": "The poster’s main strength lies in its extremely simple yet powerful geometric composition. The large red wedge pushes into the white circle, so the image immediately suggests movement, attack, and conflict. The strong contrast between red, white, and black makes the poster highly readable while also reinforcing its political message. The diagonal structure and asymmetrical layout create a sense of dynamism, making the composition feel active rather than static. What is especially striking is that the poster tells a story entirely through abstract forms, without showing any people or realistic scenes. This makes it an iconic example of how visual design can communicate meaning with minimal elements."
+              }
+            ]
+          }
+        ]
       }
     ]
   },

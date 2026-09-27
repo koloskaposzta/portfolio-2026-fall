@@ -658,6 +658,197 @@ figcaption {
   font-size: 0.7em;
 }
 
+
+/* Case study reading tools: Notion-style toggles and section navigator. */
+.case-toggle {
+  margin: 1.5rem 0;
+  interpolate-size: allow-keywords;
+}
+
+.case-toggle::details-content {
+  overflow: clip;
+  height: 0;
+  opacity: 0;
+  transition: height 200ms var(--ease-out), opacity 200ms var(--ease-out), content-visibility 200ms allow-discrete;
+}
+
+.case-toggle[open]::details-content {
+  height: auto;
+  opacity: 1;
+}
+
+.case-toggle__summary {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  margin-left: -0.5rem;
+  padding: 0.3rem 0.5rem;
+  font-size: clamp(1.04rem, 1.3vw, 1.2rem);
+  font-weight: 600;
+  line-height: 1.65;
+  cursor: pointer;
+  list-style: none;
+  border-radius: 4px;
+  transition: background-color var(--duration-fast) var(--ease-out);
+}
+
+.case-toggle__summary::-webkit-details-marker {
+  display: none;
+}
+
+.case-toggle__summary::marker {
+  content: '';
+}
+
+.case-toggle__summary:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.case-toggle__summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.case-toggle__icon {
+  flex: none;
+  width: 0;
+  height: 0;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 6px solid var(--ink);
+  transform-origin: 35% 50%;
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.case-toggle[open] > .case-toggle__summary .case-toggle__icon {
+  transform: rotate(90deg);
+}
+
+.case-toggle__body {
+  padding: 0.35rem 0 0.3rem 1.4rem;
+}
+
+.case-toggle__body .case-toggle {
+  margin: 0.9rem 0;
+}
+
+.case-toc {
+  display: none;
+}
+
+.case-toc__label {
+  margin: 0 0 0.85rem;
+  color: var(--muted);
+}
+
+.case-toc__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-left: 1px solid var(--line);
+}
+
+.case-toc__link {
+  display: block;
+  margin-left: -1px;
+  padding: 0.4rem 0 0.4rem 0.95rem;
+  color: var(--muted);
+  line-height: 1.45;
+  border-left: 2px solid transparent;
+  transition: color var(--duration-fast) var(--ease-out), border-color var(--duration-fast) var(--ease-out);
+}
+
+.case-toc__link:hover {
+  color: var(--ink);
+}
+
+.case-toc__link--active {
+  color: var(--ink);
+  font-weight: 600;
+  border-left-color: var(--ink);
+}
+
+.case-toc-mobile {
+  position: fixed;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  z-index: 15;
+}
+
+.case-toc-mobile__button {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.7rem 1.15rem;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  cursor: pointer;
+  transition: color var(--duration-fast) var(--ease-out), background-color var(--duration-fast) var(--ease-out);
+}
+
+.case-toc-mobile__button:is(:hover, :focus-visible) {
+  color: var(--paper);
+  background: var(--ink);
+}
+
+.case-toc-mobile__button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.case-toc-mobile__panel {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 0.5rem);
+  width: min(17rem, calc(100vw - 2rem));
+  max-height: min(60vh, 26rem);
+  overflow-y: auto;
+  padding: 1.1rem 1.2rem;
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.14);
+}
+
+.case-toc-mobile .case-toc__list {
+  border-left: none;
+}
+
+.case-toc-mobile .case-toc__link {
+  min-height: 2.75rem;
+  margin-left: 0;
+  padding: 0.6rem 0;
+  font-size: 0.95rem;
+  border-left: none;
+}
+
+@media (min-width: 1100px) {
+  .case-study {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 13rem;
+    column-gap: clamp(2rem, 4vw, 5rem);
+    align-items: start;
+  }
+
+  .case-study__main {
+    min-width: 0;
+  }
+
+  .case-toc-shell {
+    position: sticky;
+    top: 7rem;
+  }
+
+  .case-toc {
+    display: block;
+  }
+
+  .case-toc-mobile {
+    display: none;
+  }
+}
+
 @media (max-width: 900px) {
   .project-card__link,
   .about-content {
@@ -734,7 +925,11 @@ figcaption {
   .site-header,
   .project-card__image img,
   .site-nav a,
-  .footer-links a {
+  .footer-links a,
+  .case-toggle::details-content,
+  .case-toggle__icon,
+  .case-toc__link,
+  .case-toc-mobile__button {
     transition: none;
   }
 }

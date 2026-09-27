@@ -14,6 +14,7 @@ export type CaseStudyBlock = Readonly<
   | { kind: 'list'; items: readonly string[] }
   | { kind: 'quote'; text: string }
   | { kind: 'link'; text: string; href: string }
+  | { kind: 'toggle'; title: string; blocks: readonly CaseStudyBlock[] }
 >
 
 export type CaseStudySection = Readonly<{

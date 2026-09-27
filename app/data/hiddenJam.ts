@@ -143,203 +143,209 @@ export const hiddenJamSections = [
     "title": "👥Personas",
     "blocks": [
       {
-        "kind": "heading",
-        "text": "🌼Irma Introvert"
-      },
-      {
-        "kind": "paragraph",
-        "text": "Background"
-      },
-      {
-        "kind": "list",
-        "items": [
-          "Name: Irma",
-          "Age: 25",
-          "Occupation: Masters degree student",
-          "Travel Style: Prefers longer trips (several weeks at a time) to immerse herself in the local culture of far-off destinations."
+        "kind": "toggle",
+        "title": "🌼Irma Introvert",
+        "blocks": [
+          {
+            "kind": "paragraph",
+            "text": "Background"
+          },
+          {
+            "kind": "list",
+            "items": [
+              "Name: Irma",
+              "Age: 25",
+              "Occupation: Masters degree student",
+              "Travel Style: Prefers longer trips (several weeks at a time) to immerse herself in the local culture of far-off destinations."
+            ]
+          },
+          {
+            "kind": "paragraph",
+            "text": "Personality & Context"
+          },
+          {
+            "kind": "list",
+            "items": [
+              "Feels excited about exploring unfamiliar places for extended periods, yet gets anxious if her plans lack clarity.",
+              "Loves spontaneity and discovery but needs enough structure so she doesn’t feel overwhelmed.",
+              "Interested in learning local customs, traditions, and languages to deepen her travel experience.",
+              "Irma also dedicates her free time to volunteering at animal shelters, where her compassion for rescued animals truly shines."
+            ]
+          },
+          {
+            "kind": "paragraph",
+            "text": "Goals"
+          },
+          {
+            "kind": "list",
+            "items": [
+              "Deep Cultural Immersion",
+              "Wants to get more than just a surface-level view, seeking authentic connections and insights into local life.",
+              "Meet New People",
+              "Looks for ways to connect with locals and fellow travellers, ensuring she doesn’t feel isolated on longer trips.",
+              "Stay Safe & Informed",
+              "Prefers clear, reliable information—especially crucial when she’s away for weeks and may venture off the beaten path."
+            ]
+          },
+          {
+            "kind": "paragraph",
+            "text": "Frustrations"
+          },
+          {
+            "kind": "list",
+            "items": [
+              "Overwhelming Options",
+              "Researching for a multi-week trip often leads to information overload, making it tough to separate authentic advice from the rest.",
+              "Language & Cultural Barriers",
+              "Feels nervous about traveling far from home where language or cultural norms are unfamiliar.",
+              "Navigating Alone",
+              "Managing logistics, transportation, and potential emergencies on her own can be stressful, especially in remote regions.",
+              "Fear of Missing Out",
+              "Worried she’ll overlook hidden gems or local traditions, undermining her goal of true cultural immersion."
+            ]
+          },
+          {
+            "kind": "paragraph",
+            "text": "Key Insight"
+          },
+          {
+            "kind": "paragraph",
+            "text": "Irma’s extended trips magnify the importance of clarity and support. She craves genuine cultural experiences and the chance to form meaningful connections, but she needs tools that help reduce uncertainty—like reliable recommendations, community-building features, and practical information tailored to travellers with longer stays."
+          }
         ]
       },
       {
-        "kind": "paragraph",
-        "text": "Personality & Context"
-      },
-      {
-        "kind": "list",
-        "items": [
-          "Feels excited about exploring unfamiliar places for extended periods, yet gets anxious if her plans lack clarity.",
-          "Loves spontaneity and discovery but needs enough structure so she doesn’t feel overwhelmed.",
-          "Interested in learning local customs, traditions, and languages to deepen her travel experience.",
-          "Irma also dedicates her free time to volunteering at animal shelters, where her compassion for rescued animals truly shines."
+        "kind": "toggle",
+        "title": "🕶️Alan McBachelorparty",
+        "blocks": [
+          {
+            "kind": "paragraph",
+            "text": "Background"
+          },
+          {
+            "kind": "list",
+            "items": [
+              "Name: Alan McBachelorparty",
+              "Age: 32",
+              "Occupation: Sales Manager",
+              "Travel Style: Takes shorter trips (3–6 days) with a group of friends, typically visiting popular city destinations."
+            ]
+          },
+          {
+            "kind": "paragraph",
+            "text": "Personality & Context"
+          },
+          {
+            "kind": "list",
+            "items": [
+              "Organizes trips for several people, which involves coordinating accommodations, activities, and schedules.",
+              "More focused on finding places that capture the essence of the destination’s culture—particularly bars, clubs, and unique city spots—rather than forging new friendships with locals.",
+              "Values efficiency and doesn’t want to waste limited time on unremarkable tourist traps."
+            ]
+          },
+          {
+            "kind": "paragraph",
+            "text": "Goals"
+          },
+          {
+            "kind": "list",
+            "items": [
+              "Curate an Enjoyable Group Experience",
+              "Needs to ensure his friends are entertained and satisfied with the itinerary.",
+              "Discover Authentic Local Hotspots",
+              "Interested in hitting up the city’s “must-see” places that truly reflect the local vibe (e.g., favourite pubs, unique eateries).",
+              "Maximize Limited Time",
+              "Since each trip only lasts a few days, wants quick, reliable solutions to find worthwhile activities."
+            ]
+          },
+          {
+            "kind": "paragraph",
+            "text": "Frustrations"
+          },
+          {
+            "kind": "list",
+            "items": [
+              "Group Coordination",
+              "Planning for multiple people can be stressful—everyone has different preferences and energy levels.",
+              "Tourist Trap Fatigue",
+              "Dislikes ending up in predictable, tourist-heavy spots that could be found anywhere, missing out on genuine local flair.",
+              "Information Overload",
+              "Sifting through countless reviews and guidebooks is time-consuming, making it hard to pick authentic places quickly.",
+              "Local Connections Not a Priority",
+              "Although he’s not looking to meet new people, he still wants insider tips on the local scene—without the extra hassle."
+            ]
+          },
+          {
+            "kind": "paragraph",
+            "text": "Key Insight"
+          },
+          {
+            "kind": "paragraph",
+            "text": "Alan’s focus is curating fun, culturally rich experiences for a tight-knit group in a short timespan. While he isn’t seeking deep local relationships, he appreciates recommendations that capture a city’s true character—especially unique venues that can’t be replicated back home. A solution aimed at Alan should provide quick, trustworthy pointers for group-friendly hot spots and eliminate the guesswork of planning in unfamiliar cities."
+          }
         ]
       },
       {
-        "kind": "paragraph",
-        "text": "Goals"
-      },
-      {
-        "kind": "list",
-        "items": [
-          "Deep Cultural Immersion",
-          "Wants to get more than just a surface-level view, seeking authentic connections and insights into local life.",
-          "Meet New People",
-          "Looks for ways to connect with locals and fellow travellers, ensuring she doesn’t feel isolated on longer trips.",
-          "Stay Safe & Informed",
-          "Prefers clear, reliable information—especially crucial when she’s away for weeks and may venture off the beaten path."
+        "kind": "toggle",
+        "title": "💼Matthew Bigboss",
+        "blocks": [
+          {
+            "kind": "paragraph",
+            "text": "Background"
+          },
+          {
+            "kind": "list",
+            "items": [
+              "Name: Matthew",
+              "Occupation: CEO",
+              "Travel Style: Frequent, short business trips to major cities"
+            ]
+          },
+          {
+            "kind": "paragraph",
+            "text": "Personality & Context"
+          },
+          {
+            "kind": "list",
+            "items": [
+              "Limited free time—often just a few hours outside of meetings",
+              "Unsure how to navigate social situations with international colleagues",
+              "Prefers reliable, low-effort options for after-work downtime"
+            ]
+          },
+          {
+            "kind": "paragraph",
+            "text": "Goals"
+          },
+          {
+            "kind": "list",
+            "items": [
+              "Efficient Planning – Needs quick, dependable suggestions to make the most of brief stays",
+              "Backup Plans – Wants alternatives in case schedules shift or meetings run late",
+              "Professional Image – Aims to maintain composure and confidence around foreign colleagues"
+            ]
+          },
+          {
+            "kind": "paragraph",
+            "text": "Frustrations"
+          },
+          {
+            "kind": "list",
+            "items": [
+              "Time Constraints – Tight work schedules leave little room for trial and error",
+              "Cultural Uncertainty – Feels awkward about local customs or language barriers when with colleagues",
+              "Overwhelming Choices – Too many generic travel guides, not enough concise, business-friendly tips"
+            ]
+          },
+          {
+            "kind": "paragraph",
+            "text": "Key Insight"
+          },
+          {
+            "kind": "paragraph",
+            "text": "Matthew values concise, vetted recommendations that fit into a packed agenda. He seeks quick cultural or dining experiences he can rely on—without risking awkward encounters or wasted time."
+          }
         ]
-      },
-      {
-        "kind": "paragraph",
-        "text": "Frustrations"
-      },
-      {
-        "kind": "list",
-        "items": [
-          "Overwhelming Options",
-          "Researching for a multi-week trip often leads to information overload, making it tough to separate authentic advice from the rest.",
-          "Language & Cultural Barriers",
-          "Feels nervous about traveling far from home where language or cultural norms are unfamiliar.",
-          "Navigating Alone",
-          "Managing logistics, transportation, and potential emergencies on her own can be stressful, especially in remote regions.",
-          "Fear of Missing Out",
-          "Worried she’ll overlook hidden gems or local traditions, undermining her goal of true cultural immersion."
-        ]
-      },
-      {
-        "kind": "paragraph",
-        "text": "Key Insight"
-      },
-      {
-        "kind": "paragraph",
-        "text": "Irma’s extended trips magnify the importance of clarity and support. She craves genuine cultural experiences and the chance to form meaningful connections, but she needs tools that help reduce uncertainty—like reliable recommendations, community-building features, and practical information tailored to travellers with longer stays."
-      },
-      {
-        "kind": "heading",
-        "text": "🕶️Alan McBachelorparty"
-      },
-      {
-        "kind": "paragraph",
-        "text": "Background"
-      },
-      {
-        "kind": "list",
-        "items": [
-          "Name: Alan McBachelorparty",
-          "Age: 32",
-          "Occupation: Sales Manager",
-          "Travel Style: Takes shorter trips (3–6 days) with a group of friends, typically visiting popular city destinations."
-        ]
-      },
-      {
-        "kind": "paragraph",
-        "text": "Personality & Context"
-      },
-      {
-        "kind": "list",
-        "items": [
-          "Organizes trips for several people, which involves coordinating accommodations, activities, and schedules.",
-          "More focused on finding places that capture the essence of the destination’s culture—particularly bars, clubs, and unique city spots—rather than forging new friendships with locals.",
-          "Values efficiency and doesn’t want to waste limited time on unremarkable tourist traps."
-        ]
-      },
-      {
-        "kind": "paragraph",
-        "text": "Goals"
-      },
-      {
-        "kind": "list",
-        "items": [
-          "Curate an Enjoyable Group Experience",
-          "Needs to ensure his friends are entertained and satisfied with the itinerary.",
-          "Discover Authentic Local Hotspots",
-          "Interested in hitting up the city’s “must-see” places that truly reflect the local vibe (e.g., favourite pubs, unique eateries).",
-          "Maximize Limited Time",
-          "Since each trip only lasts a few days, wants quick, reliable solutions to find worthwhile activities."
-        ]
-      },
-      {
-        "kind": "paragraph",
-        "text": "Frustrations"
-      },
-      {
-        "kind": "list",
-        "items": [
-          "Group Coordination",
-          "Planning for multiple people can be stressful—everyone has different preferences and energy levels.",
-          "Tourist Trap Fatigue",
-          "Dislikes ending up in predictable, tourist-heavy spots that could be found anywhere, missing out on genuine local flair.",
-          "Information Overload",
-          "Sifting through countless reviews and guidebooks is time-consuming, making it hard to pick authentic places quickly.",
-          "Local Connections Not a Priority",
-          "Although he’s not looking to meet new people, he still wants insider tips on the local scene—without the extra hassle."
-        ]
-      },
-      {
-        "kind": "paragraph",
-        "text": "Key Insight"
-      },
-      {
-        "kind": "paragraph",
-        "text": "Alan’s focus is curating fun, culturally rich experiences for a tight-knit group in a short timespan. While he isn’t seeking deep local relationships, he appreciates recommendations that capture a city’s true character—especially unique venues that can’t be replicated back home. A solution aimed at Alan should provide quick, trustworthy pointers for group-friendly hot spots and eliminate the guesswork of planning in unfamiliar cities."
-      },
-      {
-        "kind": "heading",
-        "text": "💼Matthew Bigboss"
-      },
-      {
-        "kind": "paragraph",
-        "text": "Background"
-      },
-      {
-        "kind": "list",
-        "items": [
-          "Name: Matthew",
-          "Occupation: CEO",
-          "Travel Style: Frequent, short business trips to major cities"
-        ]
-      },
-      {
-        "kind": "paragraph",
-        "text": "Personality & Context"
-      },
-      {
-        "kind": "list",
-        "items": [
-          "Limited free time—often just a few hours outside of meetings",
-          "Unsure how to navigate social situations with international colleagues",
-          "Prefers reliable, low-effort options for after-work downtime"
-        ]
-      },
-      {
-        "kind": "paragraph",
-        "text": "Goals"
-      },
-      {
-        "kind": "list",
-        "items": [
-          "Efficient Planning – Needs quick, dependable suggestions to make the most of brief stays",
-          "Backup Plans – Wants alternatives in case schedules shift or meetings run late",
-          "Professional Image – Aims to maintain composure and confidence around foreign colleagues"
-        ]
-      },
-      {
-        "kind": "paragraph",
-        "text": "Frustrations"
-      },
-      {
-        "kind": "list",
-        "items": [
-          "Time Constraints – Tight work schedules leave little room for trial and error",
-          "Cultural Uncertainty – Feels awkward about local customs or language barriers when with colleagues",
-          "Overwhelming Choices – Too many generic travel guides, not enough concise, business-friendly tips"
-        ]
-      },
-      {
-        "kind": "paragraph",
-        "text": "Key Insight"
-      },
-      {
-        "kind": "paragraph",
-        "text": "Matthew values concise, vetted recommendations that fit into a packed agenda. He seeks quick cultural or dining experiences he can rely on—without risking awkward encounters or wasted time."
       }
     ]
   },
