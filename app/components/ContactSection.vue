@@ -1,3 +1,59 @@
+<script setup lang="ts">
+type ContactSubmitState = 'idle' | 'submitting' | 'sent' | 'error'
+
+type ContactPayload = Readonly<{
+  name: string
+  email: string
+  message: string
+  privacyAcknowledged: boolean
+}>
+
+const config = useRuntimeConfig()
+const submitState = ref<ContactSubmitState>('idle')
+const statusMessage = ref('Message sending will be available soon.')
+
+const contactEnabled = computed((): boolean => String(config.public.contactEnabled) === 'true')
+
+const createContactPayload = (form: HTMLFormElement): ContactPayload => {
+  const formData = new FormData(form)
+
+  return {
+    name: String(formData.get('name') ?? ''),
+    email: String(formData.get('email') ?? ''),
+    message: String(formData.get('message') ?? ''),
+    privacyAcknowledged: formData.get('privacyAcknowledged') === 'on'
+  }
+}
+
+const submitContact = async (event: Event): Promise<void> => {
+  if (!contactEnabled.value || !(event.currentTarget instanceof HTMLFormElement)) {
+    return
+  }
+
+  const form = event.currentTarget
+  submitState.value = 'submitting'
+  statusMessage.value = 'Sending your message...'
+
+  const response = await fetch('/api/contact', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(createContactPayload(form))
+  })
+
+  if (!response.ok) {
+    submitState.value = 'error'
+    statusMessage.value = 'Message sending failed. Please email kap.kolos@gmail.com instead.'
+    return
+  }
+
+  form.reset()
+  submitState.value = 'sent'
+  statusMessage.value = 'Message sent. Thank you.'
+}
+</script>
+
 <template>
   <section id="contact" class="contact-section page-frame" aria-labelledby="contact-title">
     <div class="contact-section__intro">
@@ -5,7 +61,7 @@
       <p class="type-body-lg">A role, a project, or a good conversation.<br>I’m all ears.</p>
     </div>
 
-    <form class="contact-form" aria-labelledby="contact-title" @submit.prevent>
+    <form class="contact-form" aria-labelledby="contact-title" @submit.prevent="submitContact">
       <div class="contact-form__field">
         <label class="type-label" for="contact-name">Name</label>
         <input id="contact-name" name="name" type="text" autocomplete="name" placeholder="Your name" required>
@@ -24,8 +80,8 @@
         <span>I have read the <NuxtLink to="/privacy">privacy notice</NuxtLink>.</span>
       </label>
       <div>
-        <button class="contact-form__submit action-link type-nav" type="submit" disabled aria-describedby="contact-status">Send message <span aria-hidden="true">↗</span></button>
-        <p id="contact-status" class="type-caption">Message sending will be available soon.</p>
+        <button class="contact-form__submit action-link type-nav" type="submit" :disabled="!contactEnabled || submitState === 'submitting'" aria-describedby="contact-status">Send message <span aria-hidden="true">↗</span></button>
+        <p id="contact-status" class="type-caption" aria-live="polite">{{ statusMessage }}</p>
       </div>
     </form>
   </section>

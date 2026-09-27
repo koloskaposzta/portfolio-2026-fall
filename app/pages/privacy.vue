@@ -37,8 +37,7 @@ useSeoMeta({
 
       <section aria-labelledby="security-title">
         <h2 id="security-title" class="type-heading-md">Spam protection and hosting</h2>
-        <p>The contact form uses the open-source ALTCHA widget, served by this website. Your browser solves a computational challenge, and the website verifies the result before accepting a message. This integration does not send your message to ALTCHA or use tracking cookies.</p>
-        <p>Upstash Redis stores temporary challenge identifiers to prevent reuse, together with request counters linked to a keyed hash of your IP address to limit repeated requests. It does not receive your name, email address, message, or raw IP address from the form handler. These security entries expire within 20 minutes.</p>
+        <p>The contact form uses Vercel BotID to help distinguish people from automated requests before a message is accepted. BotID processes technical request information, such as request headers, cookies set for bot protection, browser signals, IP address, requested URL, and the protected endpoint.</p>
         <p>Vercel hosts the website and processes technical request information, including IP addresses, requested URLs, and browser information, to deliver and secure it. Hosting and security processing is based on legitimate interests under Article 6(1)(f) GDPR: operating the website and preventing abuse.</p>
       </section>
 
@@ -50,7 +49,7 @@ useSeoMeta({
 
       <section aria-labelledby="sharing-title">
         <h2 id="sharing-title" class="type-heading-md">Service providers and transfers</h2>
-        <p>The selected providers are <a href="https://vercel.com/legal/privacy-notice" target="_blank" rel="noopener noreferrer">Vercel</a> for hosting, <a href="https://resend.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Resend</a> for form email delivery, <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Gmail</a> for correspondence, <a href="https://upstash.com/trust/privacy.pdf" target="_blank" rel="noopener noreferrer">Upstash</a> for temporary abuse-prevention records, and <a href="https://umami.is/privacy" target="_blank" rel="noopener noreferrer">Umami Cloud</a> for analytics. ALTCHA runs as part of this website rather than a hosted verification service.</p>
+        <p>The selected providers are <a href="https://vercel.com/legal/privacy-notice" target="_blank" rel="noopener noreferrer">Vercel</a> for hosting and BotID spam protection, <a href="https://resend.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Resend</a> for form email delivery, <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Gmail</a> for correspondence, and <a href="https://umami.is/privacy" target="_blank" rel="noopener noreferrer">Umami Cloud</a> for analytics.</p>
         <p>Personal information is not sold. Providers may process information outside the European Economic Area, including in the United States. Applicable safeguards may include adequacy decisions or Standard Contractual Clauses, depending on the provider and service. You can request information about the safeguards applicable to your enquiry by emailing me.</p>
       </section>
 
