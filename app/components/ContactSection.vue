@@ -273,7 +273,6 @@ onUnmounted(clearCopyResetTimer)
   height: 1.5rem;
   place-items: center;
   padding: 0;
-  border: 1px solid var(--line);
   color: var(--ink);
   background: var(--paper);
   cursor: pointer;
