@@ -5,6 +5,7 @@ type ContactPayload = Readonly<{
   name: string
   email: string
   message: string
+  website: string
   privacyAcknowledged: boolean
 }>
 
@@ -47,6 +48,7 @@ const createContactPayload = (form: HTMLFormElement): ContactPayload => {
     name: String(formData.get('name') ?? ''),
     email: String(formData.get('email') ?? ''),
     message: String(formData.get('message') ?? ''),
+    website: String(formData.get('website') ?? ''),
     privacyAcknowledged: formData.get('privacyAcknowledged') === 'on'
   }
 }
@@ -101,6 +103,10 @@ onUnmounted(clearCopyResetTimer)
       <div class="contact-form__field">
         <label class="type-label" for="contact-message">Message</label>
         <textarea id="contact-message" name="message" rows="6" placeholder="Dear Kolos, I'm very grateful to find you! You must be talented and also a wonderful person to work with. We would love to have you on our team, where you can contribute your skills and grow professionally! I can't believe no one has approached you yet… Lets schedule a meeting!" required />
+      </div>
+      <div class="contact-form__field contact-form__website" aria-hidden="true">
+        <label class="type-label" for="contact-website">Website</label>
+        <input id="contact-website" name="website" type="text" autocomplete="off" tabindex="-1">
       </div>
       <label class="contact-form__privacy type-caption" for="contact-privacy">
         <input id="contact-privacy" name="privacyAcknowledged" type="checkbox" required>
@@ -184,6 +190,14 @@ onUnmounted(clearCopyResetTimer)
   align-items: center;
   gap: 0.75rem;
   cursor: pointer;
+}
+
+.contact-form__website {
+  position: absolute;
+  left: -100vw;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }
 
 .contact-form__privacy input {

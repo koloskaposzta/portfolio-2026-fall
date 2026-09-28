@@ -6,6 +6,7 @@ const ContactRequestSchema = z.object({
   name: z.string().trim().min(1).max(120),
   email: z.string().trim().email().max(254),
   message: z.string().trim().min(1).max(5000),
+  website: z.string().trim().max(0),
   privacyAcknowledged: z.literal(true)
 })
 
@@ -126,6 +127,7 @@ export default defineEventHandler(async (event): Promise<ContactResponse> => {
     })
   }
 
+  const hasBrowserChallenge = typeof getHeader(event, 'x-is-human') === 'string'
   const verification = await checkBotId({
     advancedOptions: {
       checkLevel: 'basic'
@@ -133,9 +135,18 @@ export default defineEventHandler(async (event): Promise<ContactResponse> => {
   })
 
   if (verification.isBot) {
+    console.warn({
+      event: 'contact_botid_rejected',
+      hasBrowserChallenge,
+      isVerifiedBot: verification.isVerifiedBot,
+      bypassed: verification.bypassed
+    })
+
     throw createError({
       statusCode: 403,
-      statusMessage: 'BotID classified this request as automated'
+      statusMessage: hasBrowserChallenge
+        ? 'BotID rejected the browser challenge'
+        : 'BotID did not receive a browser challenge'
     })
   }
 
