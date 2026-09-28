@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { analyticsEvents } from '~/config/analytics'
+import { normalizeSiteUrl } from '~/utils/siteUrl'
 
 const headerHidden = ref(false)
 const headerScrolled = ref(false)
 const route = useRoute()
 const config = useRuntimeConfig()
-const siteUrl = config.public.siteUrl.replace(/\/$/, '')
+const siteUrl = normalizeSiteUrl(config.public.siteUrl)
 const canonicalUrl = computed(() => `${siteUrl}${route.path === '/' ? '' : route.path}`)
 
 useSeoMeta({

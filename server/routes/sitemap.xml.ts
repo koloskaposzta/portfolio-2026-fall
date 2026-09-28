@@ -1,4 +1,5 @@
 import { caseStudies } from '../../app/data/caseStudies'
+import { normalizeSiteUrl } from '../../app/utils/siteUrl'
 
 type SitemapPage = Readonly<{
   path: string
@@ -22,7 +23,7 @@ const createSitemap = (siteUrl: string, pages: readonly SitemapPage[]): string =
 
 export default defineEventHandler((event): string => {
   const config = useRuntimeConfig(event)
-  const siteUrl = config.public.siteUrl.replace(/\/$/, '')
+  const siteUrl = normalizeSiteUrl(config.public.siteUrl)
   const pages: readonly SitemapPage[] = [
     { path: '/', priority: '1.0' },
     { path: '/about', priority: '0.8' },

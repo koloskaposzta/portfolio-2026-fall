@@ -1,4 +1,5 @@
 import { caseStudies } from '../../app/data/caseStudies'
+import { normalizeSiteUrl } from '../../app/utils/siteUrl'
 
 const createCaseStudyLinks = (siteUrl: string): string => caseStudies
   .map(study => `- [${study.title}](${siteUrl}/work/${study.slug}): ${study.summary}`)
@@ -23,7 +24,7 @@ ${createCaseStudyLinks(siteUrl)}
 
 export default defineEventHandler((event): string => {
   const config = useRuntimeConfig(event)
-  const siteUrl = config.public.siteUrl.replace(/\/$/, '')
+  const siteUrl = normalizeSiteUrl(config.public.siteUrl)
 
   setHeader(event, 'content-type', 'text/plain; charset=utf-8')
   return createLlmsText(siteUrl)
