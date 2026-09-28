@@ -106,10 +106,9 @@ watch(() => route.params.slug, async () => {
       </figure>
 
       <div ref="articleBody" class="case-body">
-        <section v-for="(section, index) in study.sections" :id="section.id" :key="section.id" class="case-section" :aria-labelledby="`${section.id}-title`">
-          <div class="case-section__index type-label">0{{ index + 1 }}</div>
+        <section v-for="section in study.sections" :id="section.id" :key="section.id" class="case-section" :aria-labelledby="`${section.id}-title`">
           <div class="case-section__content">
-            <h2 :id="`${section.id}-title`" class="type-section-title">{{ section.title }}</h2>
+            <h2 :id="`${section.id}-title`" class="type-heading-md">{{ section.title }}</h2>
             <CaseStudyBlocks :blocks="section.blocks" />
             <figure v-if="section.figure" class="case-figure">
               <img :src="section.figure.src" :alt="section.figure.alt" loading="lazy">

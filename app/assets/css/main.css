@@ -516,7 +516,7 @@ a:focus-visible {
 }
 
 .case-cover {
-  margin: 0 0 clamp(6rem, 11vw, 12rem);
+  margin: 0 0 clamp(2rem, 4vw, 3rem);
 }
 
 .case-cover img {
@@ -532,16 +532,8 @@ figcaption {
 }
 
 .case-section {
-  display: grid;
-  grid-template-columns: minmax(9rem, 0.28fr) minmax(0, 1fr);
-  gap: clamp(2rem, 7vw, 8rem);
-  padding-block: clamp(3rem, 7vw, 7rem);
-  border-top: 1px solid var(--line);
+  padding-block: clamp(1.25rem, 2vw, 2rem);
   scroll-margin-top: 2rem;
-}
-
-.case-section__index {
-  color: var(--accent);
 }
 
 .case-section__content {
@@ -550,13 +542,13 @@ figcaption {
 
 .case-section h2 {
   max-width: 50rem;
-  margin: 0 0 2rem;
+  margin: 0 0 1rem;
 }
 
 .case-section h3,
 .case-section h4 {
   max-width: 43rem;
-  margin: 2.5rem 0 1rem;
+  margin: 1.5rem 0 0.75rem;
 }
 
 .case-section p,
@@ -567,7 +559,7 @@ figcaption {
 }
 
 .case-section p {
-  margin: 0 0 1.2rem;
+  margin: 0 0 0.75rem;
 }
 
 .case-section p a {
@@ -576,14 +568,14 @@ figcaption {
 }
 
 .case-section blockquote {
-  margin: 2rem 0;
+  margin: 1rem 0;
   padding-left: 1.5rem;
   border-left: 3px solid var(--accent);
 }
 
 .case-points {
   padding-left: 1.2rem;
-  margin-block: 1.8rem;
+  margin-block: 1rem;
 }
 
 .case-points li {
@@ -596,7 +588,7 @@ figcaption {
 }
 
 .case-figure {
-  margin: clamp(2rem, 4vw, 4rem) 0 0;
+  margin: 1.5rem 0 0;
 }
 
 .case-figure img {
@@ -610,7 +602,6 @@ figcaption {
   flex-wrap: wrap;
   gap: 0.8rem;
   padding-top: clamp(3rem, 6vw, 6rem);
-  border-top: 1px solid var(--line);
 }
 
 .action-link {
@@ -643,7 +634,6 @@ figcaption {
   gap: 1rem;
   margin-top: clamp(7rem, 12vw, 12rem);
   padding-top: 2rem;
-  border-top: 1px solid var(--line);
 }
 
 .next-project__title {
@@ -661,7 +651,7 @@ figcaption {
 
 /* Case study reading tools: Notion-style toggles and section navigator. */
 .case-toggle {
-  margin: 1.5rem 0;
+  margin: 0.75rem 0;
   interpolate-size: allow-keywords;
 }
 
@@ -897,8 +887,7 @@ figcaption {
   }
 
   .footer-bottom,
-  .case-meta,
-  .case-section {
+  .case-meta {
     grid-template-columns: 1fr;
   }
 
@@ -912,9 +901,6 @@ figcaption {
     font-size: clamp(4.2rem, 16vw, 6.8rem);
   }
 
-  .case-section {
-    gap: 1.2rem;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

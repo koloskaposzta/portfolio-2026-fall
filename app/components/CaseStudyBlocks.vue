@@ -10,8 +10,8 @@ defineProps<{
 <template>
   <template v-for="(block, blockIndex) in blocks" :key="blockIndex">
     <p v-if="block.kind === 'paragraph'" class="type-body">{{ block.text }}</p>
-    <h3 v-else-if="block.kind === 'heading'" class="type-heading-md">{{ block.text }}</h3>
-    <h4 v-else-if="block.kind === 'subheading'" class="type-heading-sm">{{ block.text }}</h4>
+    <h3 v-else-if="block.kind === 'heading'" class="type-heading-sm">{{ block.text }}</h3>
+    <h4 v-else-if="block.kind === 'subheading'" class="type-body-lg">{{ block.text }}</h4>
     <ul v-else-if="block.kind === 'list'" class="case-points type-body">
       <li v-for="item in block.items" :key="item">{{ item }}</li>
     </ul>
