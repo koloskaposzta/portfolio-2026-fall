@@ -117,11 +117,12 @@ if (import.meta.dev) {
 
   <NuxtPage />
 
-  <footer class="site-footer page-frame">
+  <footer class="site-footer page-frame" :class="{ 'site-footer--home': route.path === '/' }">
     <div v-if="route.path !== '/'">
       <p class="eyebrow type-meta">Have something in mind?</p>
       <NuxtLink class="footer-contact type-footer-title" to="/#contact" :data-umami-event="analyticsEvents.contactClick">Let’s talk <span aria-hidden="true">↗</span></NuxtLink>
     </div>
+    <p v-else class="footer-note type-quote">I’m drawn to a challenge. For this portfolio, I chose black and white, letting typography, space, and detail create the visual interest.</p>
     <div class="footer-bottom type-caption">
       <span>© {{ new Date().getFullYear() }} Kolos Káposzta</span>
       <div class="footer-links type-nav">
