@@ -47,7 +47,7 @@ useSeoMeta({
         <h2 id="home-about-title" class="type-section-title">About me<span class="period">.</span></h2>
       </div>
       <div class="home-about__content">
-        <p class="type-body">My front-end background shapes how I approach product design. Building a complex enterprise app taught me to care about clear structure, practical constraints, and interfaces that are easy to understand.</p>
+        <p class="type-body">I came to design through software development and keep learning from what I build, the people I meet, and the talks and exhibitions I seek out. Away from work, I’m usually outdoors or somewhere listening to a band you probably haven’t heard of.</p>
         <NuxtLink class="action-link type-nav" to="/about">More about me <span aria-hidden="true">↗</span></NuxtLink>
       </div>
     </section>
