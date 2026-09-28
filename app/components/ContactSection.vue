@@ -8,12 +8,37 @@ type ContactPayload = Readonly<{
   privacyAcknowledged: boolean
 }>
 
+type CopyState = 'idle' | 'copied'
+
 const config = useRuntimeConfig()
 const submitState = ref<ContactSubmitState>('idle')
 const statusMessage = ref('Message sending will be available soon.')
 const fallbackEmail = 'kap.kolos@gmail.com'
+const copyState = ref<CopyState>('idle')
+const copyResetTimer = ref<number | null>(null)
 
 const contactEnabled = computed((): boolean => String(config.public.contactEnabled) === 'true')
+
+const resetCopyState = (): void => {
+  copyState.value = 'idle'
+  copyResetTimer.value = null
+}
+
+const clearCopyResetTimer = (): void => {
+  if (copyResetTimer.value === null) {
+    return
+  }
+
+  window.clearTimeout(copyResetTimer.value)
+  copyResetTimer.value = null
+}
+
+const copyFallbackEmail = async (): Promise<void> => {
+  clearCopyResetTimer()
+  await navigator.clipboard.writeText(fallbackEmail)
+  copyState.value = 'copied'
+  copyResetTimer.value = window.setTimeout(resetCopyState, 5000)
+}
 
 const createContactPayload = (form: HTMLFormElement): ContactPayload => {
   const formData = new FormData(form)
@@ -53,6 +78,8 @@ const submitContact = async (event: Event): Promise<void> => {
   submitState.value = 'sent'
   statusMessage.value = 'Message sent. Thank you.'
 }
+
+onUnmounted(clearCopyResetTimer)
 </script>
 
 <template>
@@ -84,7 +111,17 @@ const submitContact = async (event: Event): Promise<void> => {
         <button class="contact-form__submit action-link type-nav" type="submit" :disabled="!contactEnabled || submitState === 'submitting'" aria-describedby="contact-status">Send message <span aria-hidden="true">↗</span></button>
         <p id="contact-status" class="type-caption" aria-live="polite">
           {{ statusMessage }}
-          <a v-if="submitState === 'error'" :href="`mailto:${fallbackEmail}`">{{ fallbackEmail }}</a>
+          <span v-if="submitState === 'error'" class="contact-form__fallback">
+            <a :href="`mailto:${fallbackEmail}`">{{ fallbackEmail }}</a>
+            <button class="contact-form__copy" type="button" :aria-label="copyState === 'copied' ? 'Email copied' : 'Copy email address'" @click="copyFallbackEmail">
+              <svg v-if="copyState === 'copied'" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+              </svg>
+              <svg v-else viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M19 21H8V7h11m0-2H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2M16 1H4a2 2 0 0 0-2 2v14h2V3h12z" />
+              </svg>
+            </button>
+          </span>
         </p>
       </div>
     </form>
@@ -208,6 +245,35 @@ const submitContact = async (event: Event): Promise<void> => {
   color: var(--ink);
   text-decoration: underline;
   text-underline-offset: 0.2em;
+}
+
+.contact-form__fallback {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.contact-form__copy {
+  display: inline-grid;
+  width: 1.5rem;
+  height: 1.5rem;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  background: var(--paper);
+  cursor: pointer;
+}
+
+.contact-form__copy svg {
+  width: 1rem;
+  height: 1rem;
+  fill: currentColor;
+}
+
+.contact-form__copy:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
 }
 
 @media (max-width: 900px) {
