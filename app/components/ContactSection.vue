@@ -271,6 +271,7 @@ onUnmounted(clearCopyResetTimer)
   display: inline-grid;
   width: 1.5rem;
   height: 1.5rem;
+  border: none;
   place-items: center;
   padding: 0;
   color: var(--ink);
