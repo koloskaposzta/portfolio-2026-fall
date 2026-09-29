@@ -111,7 +111,7 @@ if (import.meta.dev) {
     <nav class="site-nav type-nav" aria-label="Main navigation">
       <NuxtLink to="/#work">Work</NuxtLink>
       <NuxtLink to="/about">About</NuxtLink>
-      <NuxtLink class="site-nav__contact" to="/#contact" :data-umami-event="analyticsEvents.contactClick">Contact <span aria-hidden="true">↗</span></NuxtLink>
+      <NuxtLink class="site-nav__contact" to="/#contact" :data-umami-event="analyticsEvents.contactClick">Contact <AppIcon name="north-east" /></NuxtLink>
     </nav>
   </header>
 
@@ -120,15 +120,15 @@ if (import.meta.dev) {
   <footer class="site-footer page-frame" :class="{ 'site-footer--home': route.path === '/' }">
     <div v-if="route.path !== '/'">
       <p class="eyebrow type-meta">Have something in mind?</p>
-      <NuxtLink class="footer-contact type-footer-title" to="/#contact" :data-umami-event="analyticsEvents.contactClick">Let’s talk <span aria-hidden="true">↗</span></NuxtLink>
+      <NuxtLink class="footer-contact type-footer-title" to="/#contact" :data-umami-event="analyticsEvents.contactClick">Let’s talk <AppIcon name="north-east" /></NuxtLink>
     </div>
     <p v-else class="footer-note type-quote">I’m drawn to a challenge. For this portfolio, I chose black and white, letting typography, space, and detail create the visual interest.</p>
     <div class="footer-bottom type-caption">
       <span>© {{ new Date().getFullYear() }} Kolos Káposzta</span>
       <div class="footer-links type-nav">
         <NuxtLink to="/privacy">Privacy</NuxtLink>
-        <a href="https://github.com/koloskaposzta" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-        <a href="https://www.linkedin.com/in/kolos-k%C3%A1poszta-04891421a/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+        <a href="https://github.com/koloskaposzta" target="_blank" rel="noopener noreferrer">GitHub <AppIcon name="north-east" /></a>
+        <a href="https://www.linkedin.com/in/kolos-k%C3%A1poszta-04891421a/" target="_blank" rel="noopener noreferrer">LinkedIn <AppIcon name="north-east" /></a>
       </div>
     </div>
   </footer>

@@ -114,7 +114,7 @@ onUnmounted(clearCopyResetTimer)
         <span>I have read the <NuxtLink to="/privacy">privacy notice</NuxtLink>.</span>
       </label>
       <div>
-        <button class="contact-form__submit action-link type-nav" type="submit" :disabled="!contactEnabled || submitState === 'submitting'" aria-describedby="contact-status">Send message <span aria-hidden="true">↗</span></button>
+        <button class="contact-form__submit action-link type-nav" type="submit" :disabled="!contactEnabled || submitState === 'submitting'" aria-describedby="contact-status">Send message <AppIcon name="north-east" /></button>
         <p id="contact-status" class="type-caption" aria-live="polite">
           {{ statusMessage }}
           <span v-if="submitState === 'error'" class="contact-form__fallback">

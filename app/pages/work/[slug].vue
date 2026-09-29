@@ -85,7 +85,7 @@ watch(() => route.params.slug, async () => {
   <main id="main" class="case-study page-frame">
     <div class="case-study__main">
       <div class="case-breadcrumb type-caption">
-        <NuxtLink to="/#work">← All work</NuxtLink>
+        <NuxtLink to="/#work"><AppIcon name="arrow-back" /> All work</NuxtLink>
         <span>/</span>
         <span>{{ study.title }}</span>
       </div>
@@ -119,13 +119,13 @@ watch(() => route.params.slug, async () => {
       </div>
 
       <div class="case-actions">
-        <a v-if="study.liveUrl" class="action-link action-link--primary type-nav" :href="study.liveUrl" target="_blank" rel="noopener noreferrer" :data-umami-event="analyticsEvents.externalProjectClick">Try the live demo <span aria-hidden="true">↗</span></a>
-        <a class="action-link type-nav" :href="study.sourceUrl" target="_blank" rel="noopener noreferrer">Read the original case study <span aria-hidden="true">↗</span></a>
+        <a v-if="study.liveUrl" class="action-link action-link--primary type-nav" :href="study.liveUrl" target="_blank" rel="noopener noreferrer" :data-umami-event="analyticsEvents.externalProjectClick">Try the live demo <AppIcon name="north-east" /></a>
+        <a class="action-link type-nav" :href="study.sourceUrl" target="_blank" rel="noopener noreferrer">Read the original case study <AppIcon name="north-east" /></a>
       </div>
 
       <NuxtLink class="next-project" :to="`/work/${nextStudy.slug}`" :data-umami-event="analyticsEvents.caseStudyNext">
         <span class="eyebrow type-meta">Next case study</span>
-        <span class="next-project__title type-next-title">{{ nextStudy.title }} <span aria-hidden="true">↗</span></span>
+        <span class="next-project__title type-next-title">{{ nextStudy.title }} <AppIcon name="north-east" /></span>
       </NuxtLink>
     </div>
 

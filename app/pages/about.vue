@@ -23,7 +23,7 @@ useSeoMeta({
         <p class="type-body-lg">I studied software development and found my way into design through building interfaces. Working on a complex enterprise application with a design-focused team made me curious about the decisions behind the screens: how structure, hierarchy, and interaction can make a difficult product easier to understand.</p>
         <p class="type-body-lg">That curiosity took me through a university startup program and then to Digital Product Design at MOME Open. I didn’t start out surrounded by designers, so I’ve made a habit of seeking out their perspectives—at Budapest events like POV, through talks and podcasts, and in exhibitions. I enjoy bringing what I learn back to the things I make.</p>
         <p class="type-body-lg">Away from the screen, I’m usually running, cycling, climbing, or finding another reason to be outdoors. I’m just as happy at a small gig or a good Budapest pub, and I have a soft spot for bands with fewer than 100 listeners.</p>
-        <NuxtLink class="text-link type-link" to="/#work">Explore my work <span aria-hidden="true">↗</span></NuxtLink>
+        <NuxtLink class="text-link type-link" to="/#work">Explore my work <AppIcon name="north-east" /></NuxtLink>
       </div>
     </section>
   </main>

@@ -7,7 +7,7 @@
         <span>digital products.</span>
       </h1>
       <div class="editorial-hero__bottom">
-        <a class="editorial-hero__down" href="#work" aria-label="Explore selected work"><span aria-hidden="true">↓</span></a>
+        <a class="editorial-hero__down" href="#work" aria-label="Explore selected work"><AppIcon name="arrow-downward" /></a>
         <p class="type-body-sm">I’m a product designer with a front-end background. I enjoy starting with a new idea, understanding the problem, and finding a practical way to make it real.</p>
       </div>
       <SignatureMotion name="intro" />

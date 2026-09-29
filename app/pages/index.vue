@@ -36,7 +36,7 @@ useSeoMeta({
               <h3 class="type-project-title">{{ study.title }}</h3>
               <p class="project-card__summary type-body-sm">{{ study.summary }}</p>
             </div>
-            <span class="text-link type-link">View case study <span aria-hidden="true">↗</span></span>
+            <span class="text-link type-link">View case study <AppIcon name="north-east" /></span>
           </div>
         </NuxtLink>
       </article>
@@ -48,7 +48,7 @@ useSeoMeta({
       </div>
       <div class="home-about__content">
         <p class="type-body">I came to design through software development and keep learning from what I build, the people I meet, and the talks and exhibitions I seek out. Away from work, I’m usually outdoors or somewhere listening to a band you probably haven’t heard of.</p>
-        <NuxtLink class="action-link type-nav" to="/about">More about me <span aria-hidden="true">↗</span></NuxtLink>
+        <NuxtLink class="action-link type-nav" to="/about">More about me <AppIcon name="north-east" /></NuxtLink>
       </div>
     </section>
 

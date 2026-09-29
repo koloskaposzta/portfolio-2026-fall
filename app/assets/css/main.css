@@ -442,6 +442,8 @@ a:focus-visible {
   max-width: 39rem;
   margin: 0 auto;
   color: var(--muted);
+  font-size: clamp(0.9rem, 1.1vw, 1rem);
+  font-style: normal;
   text-align: center;
 }
 

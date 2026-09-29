@@ -57,7 +57,7 @@ useSeoMeta({
         <h2 id="rights-title" class="type-heading-md">Your rights</h2>
         <p>Depending on the circumstances, you may request access to, correction of, deletion of, or restriction of your personal information, and you may object to processing based on legitimate interests. You may also have a right to data portability. Send requests to <a href="mailto:kap.kolos@gmail.com">kap.kolos@gmail.com</a>.</p>
         <p>No automated decisions with legal or similarly significant effects are made about you. Automated spam checks may reject a form submission; you can contact me directly by email instead. You may lodge a complaint with the Hungarian National Authority for Data Protection and Freedom of Information (NAIH) or another competent supervisory authority.</p>
-        <a class="text-link type-link" href="https://www.naih.hu/data-protection/investigation-by-the-authority" target="_blank" rel="noopener noreferrer">Contact NAIH <span aria-hidden="true">↗</span></a>
+        <a class="text-link type-link" href="https://www.naih.hu/data-protection/investigation-by-the-authority" target="_blank" rel="noopener noreferrer">Contact NAIH <AppIcon name="north-east" /></a>
       </section>
 
       <section aria-labelledby="changes-title">

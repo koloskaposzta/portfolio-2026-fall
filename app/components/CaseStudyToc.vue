@@ -101,7 +101,7 @@ onBeforeUnmount(() => {
         :aria-expanded="panelOpen"
         @click="panelOpen = !panelOpen"
       >
-        Contents <span aria-hidden="true">{{ panelOpen ? '▴' : '▾' }}</span>
+        Contents <AppIcon :name="panelOpen ? 'chevron-up' : 'chevron-down'" />
       </button>
       <nav v-show="panelOpen" id="case-toc-panel" class="case-toc-mobile__panel" aria-label="On this page">
         <ul class="case-toc__list">

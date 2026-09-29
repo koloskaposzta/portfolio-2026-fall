@@ -20,6 +20,7 @@
     "zod": "^4.6.5"
   },
   "devDependencies": {
+    "@material-symbols/svg-400": "^0.47.5",
     "typescript": "~5.9.3",
     "vue-tsc": "^3.3.11"
   }

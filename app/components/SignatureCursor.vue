@@ -43,7 +43,7 @@ onMounted(() => {
     label.value = target.closest('[data-cursor="drag"]') ? 'DRAG'
       : target.closest('.project-card--preview') && !interactive ? 'WIP'
       : interactive?.matches('.project-card__link, .next-project') && !target.closest('.text-link') ? 'VIEW'
-      : interactive?.matches('[target="_blank"], [href^="mailto:"]') ? '↗' : ''
+      : interactive?.matches('[target="_blank"], [href^="mailto:"]') ? 'external' : ''
     expanded.value = Boolean(interactive || label.value)
     cursor.value?.style.setProperty('translate', `${pointerX}px ${pointerY}px`)
     active.value = true
@@ -116,7 +116,8 @@ onMounted(() => {
 <template>
   <Teleport to="body">
     <div ref="cursor" class="signature-cursor" :class="{ 'signature-cursor--active': active, 'signature-cursor--expanded': expanded, 'signature-cursor--intro': intro }" aria-hidden="true">
-      {{ label }}
+      <AppIcon v-if="label === 'external'" class="signature-cursor__icon" name="north-east" />
+      <span v-else>{{ label }}</span>
     </div>
   </Teleport>
 </template>
@@ -143,6 +144,10 @@ onMounted(() => {
   transform: translate(-50%, -50%);
   opacity: 0;
   transition: width 160ms ease, height 160ms ease, opacity 100ms ease;
+}
+
+.signature-cursor__icon {
+  font-size: 20px;
 }
 
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
