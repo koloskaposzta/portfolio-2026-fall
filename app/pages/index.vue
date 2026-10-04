@@ -40,6 +40,24 @@ useSeoMeta({
           </div>
         </NuxtLink>
       </article>
+
+      <article class="project-card project-card--private">
+        <NuxtLink class="project-card__link" to="/work/booda-bike">
+          <div class="project-card__image">
+            <img src="/work/booda-preview.png" alt="Booda Bike contact form with customer-worded support topics" loading="lazy">
+            <span class="project-card__private-label type-label">Private case study</span>
+          </div>
+          <div class="project-card__content">
+            <div>
+              <p class="project-card__category type-label">Customer support · Design engineering</p>
+              <h3 class="type-project-title">Booda Bike Help Center</h3>
+              <p class="project-card__summary type-body-sm">Connecting self-service answers, task guidance and contextual contact in one support journey.</p>
+              <p class="project-card__access type-caption">Password required to read the full story.</p>
+            </div>
+            <span class="text-link type-link">View case study <AppIcon name="north-east" /></span>
+          </div>
+        </NuxtLink>
+      </article>
     </section>
 
     <section class="home-about page-frame" aria-labelledby="home-about-title">
@@ -55,4 +73,30 @@ useSeoMeta({
     <ContactSection />
   </main>
 </template>
+
+<style scoped>
+.project-card--private .project-card__image {
+  position: relative;
+  border: 1px solid var(--line);
+}
+
+.project-card--private .project-card__image img {
+  object-fit: cover;
+  object-position: top;
+}
+
+.project-card__private-label {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.5rem 0.65rem;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.project-card__access {
+  margin: -1.5rem 0 2rem;
+  color: var(--muted);
+}
+</style>
 

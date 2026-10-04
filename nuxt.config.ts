@@ -10,6 +10,7 @@ export default defineNuxtConfig({
     }
   },
   runtimeConfig: {
+    boodaCaseStudyPassword: '',
     resendApiKey: '',
     contactFrom: '',
     contactTo: '',

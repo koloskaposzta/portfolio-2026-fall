@@ -82,8 +82,8 @@ watch(() => route.params.slug, async () => {
 </script>
 
 <template>
-  <main id="main" class="case-study page-frame">
-    <div class="case-study__main">
+  <main id="main" class="case-study case-document page-frame">
+    <div class="case-study__main case-document__main">
       <div class="case-breadcrumb type-caption">
         <NuxtLink to="/#work"><AppIcon name="arrow-back" /> All work</NuxtLink>
         <span>/</span>

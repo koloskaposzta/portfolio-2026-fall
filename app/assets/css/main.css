@@ -206,7 +206,6 @@ html {
 }
 
 body {
-  min-width: 320px;
   margin: 0;
 }
 
@@ -280,7 +279,8 @@ a:focus-visible {
 
 .site-logo {
   display: inline-flex;
-  align-items: baseline;
+  min-height: 44px;
+  align-items: center;
   gap: 0.35rem;
   white-space: nowrap;
 }
@@ -489,6 +489,32 @@ a:focus-visible {
   padding-bottom: clamp(5rem, 10vw, 10rem);
 }
 
+.case-document__main {
+  width: 100%;
+  max-width: 48rem;
+  min-width: 0;
+  margin-inline: auto;
+}
+
+.case-document .case-hero {
+  padding-block: clamp(3rem, 5vw, 5rem) clamp(2rem, 3vw, 3rem);
+}
+
+.case-document .type-case-title {
+  font-size: clamp(3.2rem, 6vw, 5.4rem);
+  line-height: 1;
+}
+
+.case-document .case-lead {
+  font-size: clamp(1.2rem, 1.8vw, 1.6rem);
+  letter-spacing: -0.035em;
+  line-height: 1.45;
+}
+
+.case-document .case-meta {
+  margin-top: 2.5rem;
+}
+
 .case-breadcrumb {
   display: flex;
   gap: 0.7rem;
@@ -550,7 +576,7 @@ figcaption {
 
 .case-section {
   padding-block: clamp(1.25rem, 2vw, 2rem);
-  scroll-margin-top: 2rem;
+  scroll-margin-top: 7rem;
 }
 
 .case-section__content {
@@ -830,28 +856,30 @@ figcaption {
   border-left: none;
 }
 
-@media (min-width: 1100px) {
-  .case-study {
+@media (min-width: 1280px) {
+  .case-document {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 13rem;
-    column-gap: clamp(2rem, 4vw, 5rem);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 48rem) minmax(0, 1fr);
+    column-gap: 2rem;
     align-items: start;
   }
 
-  .case-study__main {
-    min-width: 0;
+  .case-document__main {
+    grid-column: 2;
   }
 
-  .case-toc-shell {
+  .case-document .case-toc-shell {
+    grid-column: 3;
     position: sticky;
     top: 7rem;
+    width: min(13rem, 100%);
   }
 
-  .case-toc {
+  .case-document .case-toc {
     display: block;
   }
 
-  .case-toc-mobile {
+  .case-document .case-toc-mobile {
     display: none;
   }
 }

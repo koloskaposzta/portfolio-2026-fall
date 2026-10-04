@@ -2,6 +2,7 @@
 const cursor = ref<HTMLElement | null>(null)
 const label = ref('')
 const expanded = ref(false)
+const actionCursor = ref(false)
 const route = useRoute()
 const active = ref(false)
 const intro = ref(false)
@@ -23,6 +24,7 @@ onMounted(() => {
 
   const hide = (): void => {
     active.value = false
+    actionCursor.value = false
     document.documentElement.classList.remove('signature-cursor-active')
     window.cancelAnimationFrame(frame)
     frame = 0
@@ -33,6 +35,7 @@ onMounted(() => {
     frame = 0
     const target = document.elementFromPoint(pointerX, pointerY)
     const interactive = target?.closest('a, button, label')
+    const cursorAction = target?.closest<HTMLElement>('[data-cursor-action]')?.dataset.cursorAction
     const editable = target?.closest('input:not([type="checkbox"]), textarea, select, [contenteditable="true"]')
 
     if (!target || editable) {
@@ -40,16 +43,17 @@ onMounted(() => {
       return
     }
 
-    label.value = target.closest('[data-cursor="drag"]') ? 'DRAG'
+    label.value = cursorAction ?? (target.closest('[data-cursor="drag"]') ? 'DRAG'
       : target.closest('.project-card--preview') && !interactive ? 'WIP'
       : interactive?.matches('.project-card__link, .next-project') && !target.closest('.text-link') ? 'VIEW'
-      : interactive?.matches('[target="_blank"], [href^="mailto:"]') ? 'external' : ''
+      : interactive?.matches('[target="_blank"], [href^="mailto:"]') ? 'external' : '')
     expanded.value = Boolean(interactive || label.value)
+    actionCursor.value = Boolean(cursorAction)
     cursor.value?.style.setProperty('translate', `${pointerX}px ${pointerY}px`)
     active.value = true
     document.documentElement.classList.add('signature-cursor-active')
 
-    if (!introDone && preference.matches) {
+    if (!introDone && preference.matches && !cursorAction) {
       introDone = true
       intro.value = true
       introTimer = window.setTimeout(() => {
@@ -91,11 +95,16 @@ onMounted(() => {
     if (active.value && !frame) frame = window.requestAnimationFrame(renderPointer)
   }
 
+  const click = (): void => {
+    if (active.value && !frame) frame = window.requestAnimationFrame(renderPointer)
+  }
+
   const stopRouteWatch = watch(() => route.fullPath, hide)
   window.addEventListener('pointermove', move, { passive: true })
   document.documentElement.addEventListener('pointerleave', hide)
   window.addEventListener('blur', hide)
   window.addEventListener('scroll', scroll, { passive: true })
+  window.addEventListener('click', click)
   window.addEventListener('keydown', keyboard)
   preference.addEventListener('change', hide)
 
@@ -107,6 +116,7 @@ onMounted(() => {
     document.documentElement.removeEventListener('pointerleave', hide)
     window.removeEventListener('blur', hide)
     window.removeEventListener('scroll', scroll)
+    window.removeEventListener('click', click)
     window.removeEventListener('keydown', keyboard)
     preference.removeEventListener('change', hide)
   })
@@ -115,7 +125,7 @@ onMounted(() => {
 
 <template>
   <Teleport to="body">
-    <div ref="cursor" class="signature-cursor" :class="{ 'signature-cursor--active': active, 'signature-cursor--expanded': expanded, 'signature-cursor--intro': intro }" aria-hidden="true">
+    <div ref="cursor" class="signature-cursor" :class="{ 'signature-cursor--active': active, 'signature-cursor--expanded': expanded, 'signature-cursor--action': actionCursor, 'signature-cursor--intro': intro }" aria-hidden="true">
       <AppIcon v-if="label === 'external'" class="signature-cursor__icon" name="north-east" />
       <span v-else>{{ label }}</span>
     </div>
@@ -139,6 +149,7 @@ onMounted(() => {
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.04em;
+  white-space: nowrap;
   pointer-events: none;
   mix-blend-mode: difference;
   transform: translate(-50%, -50%);
@@ -163,10 +174,21 @@ onMounted(() => {
   .signature-cursor--expanded {
     width: 64px;
     height: 64px;
+    border-radius: 50%;
   }
 
   .signature-cursor--intro {
     animation: cursor-pulse 0.9s ease-in-out forwards;
+  }
+
+  .signature-cursor--action {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    color: #fff;
+    background: #000;
+    mix-blend-mode: normal;
+    animation: none;
   }
 
   @keyframes cursor-pulse {
