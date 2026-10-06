@@ -58,6 +58,32 @@ useSeoMeta({
           </div>
         </NuxtLink>
       </article>
+
+      <article class="project-card project-card--private">
+        <NuxtLink class="project-card__link" to="/work/i4p-rdss">
+          <div class="project-card__image rdss-preview" role="img" aria-label="RDSS signing journey from document upload through participants and authorization to a signed document">
+            <div class="rdss-preview__sheet" aria-hidden="true">
+              <span class="rdss-preview__overline type-label">I4P / RDSS</span>
+              <strong>Document to signature</strong>
+              <ol>
+                <li><span>01</span> Add document</li>
+                <li><span>02</span> Set participants</li>
+                <li><span>03</span> Authorize signing</li>
+              </ol>
+            </div>
+            <span class="project-card__private-label type-label">Private case study</span>
+          </div>
+          <div class="project-card__content">
+            <div>
+              <p class="project-card__category type-label">Enterprise signing · Design engineering</p>
+              <h3 class="type-project-title">I4P RDSS</h3>
+              <p class="project-card__summary type-body-sm">Connecting document workflows, credential activation and authenticated signing in one browser interface.</p>
+              <p class="project-card__access type-caption">Password required to read the full story.</p>
+            </div>
+            <span class="text-link type-link">View case study <AppIcon name="north-east" /></span>
+          </div>
+        </NuxtLink>
+      </article>
     </section>
 
     <section class="home-about page-frame" aria-labelledby="home-about-title">
@@ -96,6 +122,54 @@ useSeoMeta({
 
 .project-card__access {
   margin: -1.5rem 0 2rem;
+  color: var(--muted);
+}
+
+.rdss-preview {
+  padding: clamp(1rem, 4vw, 3rem);
+  background: #e7e5df;
+}
+
+.rdss-preview__sheet {
+  width: min(100%, 31rem);
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+  border: 1px solid var(--line);
+  background: var(--paper);
+  box-shadow: 0.6rem 0.6rem 0 #d0cec7;
+}
+
+.rdss-preview__overline {
+  display: block;
+  margin-bottom: 1.25rem;
+  color: var(--muted);
+}
+
+.rdss-preview__sheet strong {
+  display: block;
+  max-width: 15rem;
+  font-size: clamp(1.5rem, 3vw, 2.6rem);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 1.08;
+}
+
+.rdss-preview__sheet ol {
+  display: grid;
+  gap: 0.55rem;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rdss-preview__sheet li {
+  display: flex;
+  gap: 1rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--line);
+  font-size: clamp(0.8rem, 1.2vw, 0.95rem);
+}
+
+.rdss-preview__sheet li span {
   color: var(--muted);
 }
 </style>
