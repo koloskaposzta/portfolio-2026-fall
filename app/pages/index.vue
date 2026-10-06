@@ -23,24 +23,6 @@ useSeoMeta({
         <h2 id="work-title" class="type-section-title">Selected projects<span class="period">.</span></h2>
       </div>
 
-      <CurrentSideProject />
-
-      <article v-for="study in caseStudies" :key="study.slug" class="project-card">
-        <NuxtLink class="project-card__link" :to="`/work/${study.slug}`">
-          <div class="project-card__image">
-            <img :src="study.cover.src" :alt="study.cover.alt" loading="lazy">
-          </div>
-          <div class="project-card__content">
-            <div>
-              <p class="project-card__category type-label">{{ study.category }}</p>
-              <h3 class="type-project-title">{{ study.title }}</h3>
-              <p class="project-card__summary type-body-sm">{{ study.summary }}</p>
-            </div>
-            <span class="text-link type-link">View case study <AppIcon name="north-east" /></span>
-          </div>
-        </NuxtLink>
-      </article>
-
       <article class="project-card project-card--private">
         <NuxtLink class="project-card__link" to="/work/booda-bike">
           <div class="project-card__image">
@@ -53,6 +35,24 @@ useSeoMeta({
               <h3 class="type-project-title">Booda Bike Help Center</h3>
               <p class="project-card__summary type-body-sm">Connecting self-service answers, task guidance and contextual contact in one support journey.</p>
               <p class="project-card__access type-caption">Password required to read the full story.</p>
+            </div>
+            <span class="text-link type-link">View case study <AppIcon name="north-east" /></span>
+          </div>
+        </NuxtLink>
+      </article>
+
+      <CurrentSideProject />
+
+      <article v-for="study in caseStudies" :key="study.slug" class="project-card">
+        <NuxtLink class="project-card__link" :to="`/work/${study.slug}`">
+          <div class="project-card__image">
+            <img :src="study.cover.src" :alt="study.cover.alt" loading="lazy">
+          </div>
+          <div class="project-card__content">
+            <div>
+              <p class="project-card__category type-label">{{ study.category }}</p>
+              <h3 class="type-project-title">{{ study.title }}</h3>
+              <p class="project-card__summary type-body-sm">{{ study.summary }}</p>
             </div>
             <span class="text-link type-link">View case study <AppIcon name="north-east" /></span>
           </div>
