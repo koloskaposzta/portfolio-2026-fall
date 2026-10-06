@@ -1,9 +1,9 @@
-import { requireBoodaCaseStudySession } from '../../../utils/boodaCaseStudyAuth'
+import { boodaCaseStudyAccess, requireCaseStudySession } from '../../../utils/caseStudyAuth'
 
 const imageNames = ['help-center-home', 'contact-flow', 'contact-flow-mobile', 'return-flow', 'return-flow-mobile', 'shipping-article', 'warranty-notice', 'warranty-notice-mobile', 'related-products', 'related-products-mobile'] as const
 
 export default defineEventHandler(async (event): Promise<Uint8Array> => {
-  requireBoodaCaseStudySession(event)
+  requireCaseStudySession(event, boodaCaseStudyAccess)
   const name = getRouterParam(event, 'name')
 
   if (!name || !imageNames.some(imageName => imageName === name)) {

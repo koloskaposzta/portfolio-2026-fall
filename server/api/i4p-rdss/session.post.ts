@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { boodaCaseStudyAccess, setCaseStudySession, verifyCaseStudyPassword } from '../../utils/caseStudyAuth'
+import { rdssCaseStudyAccess, setCaseStudySession, verifyCaseStudyPassword } from '../../utils/caseStudyAuth'
 
 const requestSchema = z.object({ password: z.string().min(1) })
 
@@ -12,6 +12,6 @@ export default defineEventHandler(async (event): Promise<{ authenticated: true }
   }
 
   verifyCaseStudyPassword(event, result.data.password)
-  setCaseStudySession(event, boodaCaseStudyAccess)
+  setCaseStudySession(event, rdssCaseStudyAccess)
   return { authenticated: true }
 })

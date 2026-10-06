@@ -1,8 +1,8 @@
 import { boodaBikeStudy } from '../../data/boodaBike'
-import { requireBoodaCaseStudySession } from '../../utils/boodaCaseStudyAuth'
+import { boodaCaseStudyAccess, requireCaseStudySession } from '../../utils/caseStudyAuth'
 
 export default defineEventHandler((event): typeof boodaBikeStudy => {
-  requireBoodaCaseStudySession(event)
+  requireCaseStudySession(event, boodaCaseStudyAccess)
   setHeader(event, 'cache-control', 'private, no-store')
   return boodaBikeStudy
 })
