@@ -104,7 +104,6 @@ if (import.meta.dev) {
 <template>
   <NuxtRouteAnnouncer />
   <SignatureCursor />
-  <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header" :class="{ 'site-header--hidden': headerHidden, 'site-header--scrolled': headerScrolled }" @focusin="headerHidden = false">
     <NuxtLink class="site-logo type-brand" to="/" aria-label="Kolos Káposzta — home"><BrandWordmark variant="header" /></NuxtLink>

@@ -234,21 +234,6 @@ a:focus-visible {
   margin-inline: auto;
 }
 
-.skip-link {
-  position: absolute;
-  z-index: 20;
-  top: 0.75rem;
-  left: 0.75rem;
-  padding: 0.7rem 1rem;
-  color: #fff;
-  background: var(--ink);
-  transform: translateY(-160%);
-}
-
-.skip-link:focus {
-  transform: translateY(0);
-}
-
 .eyebrow {
   margin: 0;
 }
