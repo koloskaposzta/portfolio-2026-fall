@@ -122,7 +122,7 @@ if (import.meta.dev) {
       <p class="eyebrow type-meta">Have something in mind?</p>
       <NuxtLink class="footer-contact type-footer-title" to="/#contact" :data-umami-event="analyticsEvents.contactClick">Let’s talk <AppIcon name="north-east" /></NuxtLink>
     </div>
-    <p v-else class="footer-note type-quote">I’m drawn to a challenge. For this portfolio, I chose black and white, letting typography, space, and detail create the visual interest.</p>
+    <p v-else class="footer-note type-quote">I’m drawn to a challenge. For this portfolio, I chose to limit the color palette to black and white, letting typography, space, and detail create the visual interest. <br /> Let me know if you like it!</p>
     <div class="footer-bottom type-caption">
       <span>© {{ new Date().getFullYear() }} Kolos Káposzta</span>
       <div class="footer-links type-nav">

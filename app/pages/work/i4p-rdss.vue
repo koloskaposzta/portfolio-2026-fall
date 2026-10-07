@@ -26,6 +26,8 @@ const studySchema = z.object({
 type RdssStudy = z.infer<typeof studySchema>
 type PageState = 'loading' | 'locked' | 'ready' | 'error'
 
+definePageMeta({ validate: (): boolean => import.meta.dev })
+
 const study = shallowRef<RdssStudy | null>(null)
 const pageState = ref<PageState>('loading')
 const password = ref('')

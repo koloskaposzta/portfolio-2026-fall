@@ -3,6 +3,7 @@ const cursor = ref<HTMLElement | null>(null)
 const label = ref('')
 const expanded = ref(false)
 const actionCursor = ref(false)
+const peekCursor = ref(false)
 const route = useRoute()
 const active = ref(false)
 const intro = ref(false)
@@ -25,6 +26,7 @@ onMounted(() => {
   const hide = (): void => {
     active.value = false
     actionCursor.value = false
+    peekCursor.value = false
     document.documentElement.classList.remove('signature-cursor-active')
     window.cancelAnimationFrame(frame)
     frame = 0
@@ -36,6 +38,10 @@ onMounted(() => {
     const target = document.elementFromPoint(pointerX, pointerY)
     const interactive = target?.closest('a, button, label')
     const cursorAction = target?.closest<HTMLElement>('[data-cursor-action]')?.dataset.cursorAction
+    const peekCover = target?.closest('.project-card__image')?.querySelector('.project-password-cover')
+    const peekBounds = peekCover?.getBoundingClientRect()
+    const peeking = Boolean(peekBounds && pointerX >= peekBounds.left && pointerX <= peekBounds.right
+      && pointerY >= peekBounds.top && pointerY <= peekBounds.bottom)
     const editable = target?.closest('input:not([type="checkbox"]), textarea, select, [contenteditable="true"]')
 
     if (!target || editable) {
@@ -43,17 +49,18 @@ onMounted(() => {
       return
     }
 
-    label.value = cursorAction ?? (target.closest('[data-cursor="drag"]') ? 'DRAG'
+    label.value = peeking ? '' : cursorAction ?? (target.closest('[data-cursor="drag"]') ? 'DRAG'
       : target.closest('.project-card--preview') && !interactive ? 'WIP'
       : interactive?.matches('.project-card__link, .next-project') && !target.closest('.text-link') ? 'VIEW'
       : interactive?.matches('[target="_blank"], [href^="mailto:"]') ? 'external' : '')
-    expanded.value = Boolean(interactive || label.value)
+    expanded.value = Boolean(peeking || interactive || label.value)
     actionCursor.value = Boolean(cursorAction)
+    peekCursor.value = peeking
     cursor.value?.style.setProperty('translate', `${pointerX}px ${pointerY}px`)
     active.value = true
     document.documentElement.classList.add('signature-cursor-active')
 
-    if (!introDone && preference.matches && !cursorAction) {
+    if (!introDone && preference.matches && !cursorAction && !peeking) {
       introDone = true
       intro.value = true
       introTimer = window.setTimeout(() => {
@@ -125,7 +132,7 @@ onMounted(() => {
 
 <template>
   <Teleport to="body">
-    <div ref="cursor" class="signature-cursor" :class="{ 'signature-cursor--active': active, 'signature-cursor--expanded': expanded, 'signature-cursor--action': actionCursor, 'signature-cursor--intro': intro }" aria-hidden="true">
+    <div ref="cursor" class="signature-cursor" :class="{ 'signature-cursor--active': active, 'signature-cursor--expanded': expanded, 'signature-cursor--action': actionCursor, 'signature-cursor--peek': peekCursor, 'signature-cursor--intro': intro }" aria-hidden="true">
       <AppIcon v-if="label === 'external'" class="signature-cursor__icon" name="north-east" />
       <span v-else>{{ label }}</span>
     </div>
@@ -175,6 +182,11 @@ onMounted(() => {
     width: 64px;
     height: 64px;
     border-radius: 50%;
+  }
+
+  .signature-cursor--peek {
+    width: 88px;
+    height: 88px;
   }
 
   .signature-cursor--intro {

@@ -23,7 +23,8 @@ export default defineNuxtConfig({
   },
   nitro: {
     prerender: {
-      routes: ['/sitemap.xml', '/llms.txt']
+      routes: ['/sitemap.xml', '/llms.txt'],
+      ignore: ['/work/i4p-rdss']
     }
   },
   typescript: {

@@ -45,8 +45,7 @@ const isLocalPreviewRequest = (event: CaseStudyEvent): boolean => {
     return false
   }
 
-  const address = event.node.req.socket.remoteAddress
-  return address === '::1' || address === '127.0.0.1' || address === '::ffff:127.0.0.1'
+  return getRequestURL(event).hostname === 'localhost'
 }
 
 export const verifyCaseStudyPassword = (event: CaseStudyEvent, submittedPassword: string): void => {
