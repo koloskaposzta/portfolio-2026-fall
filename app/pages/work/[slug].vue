@@ -2,13 +2,9 @@
 import { analyticsEvents } from '~/config/analytics'
 import { caseStudies, getNextCaseStudy } from '~/data/caseStudies'
 
-type UmamiWindow = Window & {
-  umami?: { track: (eventName: string) => void }
-}
-
 const route = useRoute()
 const articleBody = ref<HTMLElement | null>(null)
-const midpointTracked = ref(false)
+const resetReadingMidpoint = useCaseStudyMidpoint(articleBody)
 
 const study = computed(() => {
   const match = caseStudies.find(item => item.slug === route.params.slug)
@@ -39,46 +35,7 @@ useSeoMeta({
   twitterImage: () => `https://koloskaposzta.com${study.value.cover.src}`
 })
 
-const trackReadingMidpoint = (): void => {
-  const body = articleBody.value
-
-  if (!body || midpointTracked.value) {
-    return
-  }
-
-  const bodyTop = window.scrollY + body.getBoundingClientRect().top
-  const midpoint = bodyTop + body.offsetHeight / 2
-
-  if (window.scrollY < midpoint) {
-    return
-  }
-
-  const tracker = (window as UmamiWindow).umami
-
-  if (!tracker) {
-    return
-  }
-
-  tracker.track(analyticsEvents.caseStudy50)
-  midpointTracked.value = true
-}
-
-onMounted(() => {
-  window.addEventListener('scroll', trackReadingMidpoint, { passive: true })
-  window.addEventListener('resize', trackReadingMidpoint)
-  trackReadingMidpoint()
-})
-
-onBeforeUnmount(() => {
-  window.removeEventListener('scroll', trackReadingMidpoint)
-  window.removeEventListener('resize', trackReadingMidpoint)
-})
-
-watch(() => route.params.slug, async () => {
-  midpointTracked.value = false
-  await nextTick()
-  window.requestAnimationFrame(trackReadingMidpoint)
-})
+watch(() => route.params.slug, resetReadingMidpoint)
 </script>
 
 <template>
@@ -120,7 +77,7 @@ watch(() => route.params.slug, async () => {
 
       <div class="case-actions">
         <a v-if="study.liveUrl" class="action-link action-link--primary type-nav" :href="study.liveUrl" target="_blank" rel="noopener noreferrer" :data-umami-event="analyticsEvents.externalProjectClick">Try the live demo <AppIcon name="north-east" /></a>
-        <a class="action-link type-nav" :href="study.sourceUrl" target="_blank" rel="noopener noreferrer">Read the original case study <AppIcon name="north-east" /></a>
+        <a class="action-link type-nav" :href="study.sourceUrl" target="_blank" rel="noopener noreferrer" :data-umami-event="analyticsEvents.externalProjectClick">Read the original case study <AppIcon name="north-east" /></a>
       </div>
 
       <NuxtLink class="next-project" :to="`/work/${nextStudy.slug}`" :data-umami-event="analyticsEvents.caseStudyNext">

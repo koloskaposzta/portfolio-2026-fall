@@ -1,7 +1,38 @@
 <script setup lang="ts">
+import { trackHomeSectionView } from '~/config/analytics'
 import { caseStudies } from '~/data/caseStudies'
 
 const showI4pDraft = import.meta.dev
+const homeSectionIds = ['work', 'side-project', 'about', 'contact'] as const
+const viewedSections = new Set<string>()
+let sectionObserver: IntersectionObserver | null = null
+
+onMounted(() => {
+  const observer = new IntersectionObserver(entries => {
+    entries.filter(entry => entry.isIntersecting).forEach(entry => {
+      const sectionId = entry.target.id
+
+      if (!viewedSections.has(sectionId) && trackHomeSectionView(sectionId)) {
+        viewedSections.add(sectionId)
+      }
+    })
+  }, { rootMargin: '-25% 0px -55% 0px', threshold: 0 })
+  sectionObserver = observer
+
+  homeSectionIds.forEach(sectionId => {
+    const section = document.getElementById(sectionId)
+
+    if (!section) {
+      throw new Error(`Cannot track home section because #${sectionId} is missing.`)
+    }
+
+    observer.observe(section)
+  })
+})
+
+onBeforeUnmount(() => {
+  sectionObserver?.disconnect()
+})
 
 useSeoMeta({
   title: 'Kolos Káposzta — Product designer',
@@ -86,14 +117,14 @@ useSeoMeta({
       </article>
     </section>
 
-    <section class="page-frame" aria-labelledby="current-side-project-title">
+    <section id="side-project" class="page-frame" aria-labelledby="current-side-project-title">
       <div class="section-topline">
         <h2 id="current-side-project-title" class="type-section-title">Current side-project</h2>
       </div>
       <CurrentSideProject />
     </section>
 
-    <section class="home-about page-frame" aria-labelledby="home-about-title">
+    <section id="about" class="home-about page-frame" aria-labelledby="home-about-title">
       <div class="section-topline">
         <h2 id="home-about-title" class="type-section-title">About me</h2>
       </div>

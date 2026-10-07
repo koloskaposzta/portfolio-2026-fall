@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { analyticsEvents, trackAnalyticsEvent } from '~/config/analytics'
+
 type ContactSubmitState = 'idle' | 'submitting' | 'sent' | 'error'
 
 type ContactPayload = Readonly<{
@@ -79,6 +81,7 @@ const submitContact = async (event: Event): Promise<void> => {
   form.reset()
   submitState.value = 'sent'
   statusMessage.value = 'Message sent. Thank you.'
+  trackAnalyticsEvent(analyticsEvents.contactFormSent)
 }
 
 onUnmounted(clearCopyResetTimer)

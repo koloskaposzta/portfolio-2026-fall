@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { z } from 'zod'
+import { analyticsEvents, trackAnalyticsEvent } from '~/config/analytics'
 
 const figureSchema = z.object({
   src: z.string().startsWith('/api/booda-bike/images/'),
@@ -65,10 +66,21 @@ const password = ref('')
 const errorMessage = ref('')
 const isSubmitting = ref(false)
 const activeFrame = ref(0)
+const articleBody = ref<HTMLElement | null>(null)
+const resetReadingMidpoint = useCaseStudyMidpoint(articleBody)
 const tocSections = computed(() => study.value?.sections.map(section => ({ id: section.id, title: section.title })) ?? [])
+
+watch(pageState, status => {
+  if (status === 'ready') {
+    void resetReadingMidpoint()
+  }
+})
 
 const toggleFrame = (): void => {
   activeFrame.value = activeFrame.value === 0 ? 1 : 0
+  if (activeFrame.value === 1) {
+    trackAnalyticsEvent(analyticsEvents.caseStudyWalkthrough)
+  }
 }
 
 useSeoMeta({
@@ -122,6 +134,7 @@ const unlockStudy = async (): Promise<void> => {
 
     password.value = ''
     await loadStudy()
+    trackAnalyticsEvent(analyticsEvents.caseStudyUnlocked)
   } catch (error) {
     errorMessage.value = error instanceof Error ? error.message : String(error)
   } finally {
@@ -164,7 +177,7 @@ onMounted(async () => {
         </div>
         <p v-if="errorMessage" class="booda-case__error type-body-sm" role="alert">{{ errorMessage }}</p>
       </form>
-      <p class="type-body-sm">Don't have the password? <a class="text-link type-link" href="mailto:kap.kolos@gmail.com?subject=Booda%20Bike%20case%20study%20access">Request access by email <AppIcon name="north-east" /></a></p>
+      <p class="type-body-sm">Don't have the password? <a class="text-link type-link" href="mailto:kap.kolos@gmail.com?subject=Booda%20Bike%20case%20study%20access" :data-umami-event="analyticsEvents.caseStudyAccessRequest">Request access by email <AppIcon name="north-east" /></a></p>
     </section>
 
     <section v-else-if="pageState === 'error'" class="booda-case__gate" aria-labelledby="booda-error-title">
@@ -173,7 +186,7 @@ onMounted(async () => {
     </section>
 
     <div v-else-if="study" class="booda-case__layout case-document">
-      <article class="booda-case__article case-document__main">
+      <article ref="articleBody" class="booda-case__article case-document__main">
       <header class="case-hero">
         <p class="eyebrow type-meta">Case study / {{ study.category }}</p>
         <h1 class="type-case-title">Booda Bike<span class="period">.</span></h1>
@@ -274,7 +287,7 @@ onMounted(async () => {
       </section>
 
       <div class="case-actions">
-        <a class="action-link type-nav" href="https://help.boodabike.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit the live Help Center (opens in a new tab)">Visit the live Help Center <AppIcon name="north-east" /></a>
+        <a class="action-link type-nav" href="https://help.boodabike.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit the live Help Center (opens in a new tab)" :data-umami-event="analyticsEvents.externalProjectClick">Visit the live Help Center <AppIcon name="north-east" /></a>
       </div>
       </article>
       <CaseStudyToc :sections="tocSections" />
