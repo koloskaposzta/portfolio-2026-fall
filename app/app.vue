@@ -110,18 +110,15 @@ if (import.meta.dev) {
     <nav class="site-nav type-nav" aria-label="Main navigation">
       <NuxtLink to="/#work">Work</NuxtLink>
       <NuxtLink to="/about">About</NuxtLink>
-      <NuxtLink class="site-nav__contact" to="/#contact" :data-umami-event="analyticsEvents.contactClick">Contact <AppIcon name="north-east" /></NuxtLink>
+      <NuxtLink class="site-nav__contact" to="#contact" :data-umami-event="analyticsEvents.contactClick">Contact <AppIcon name="north-east" /></NuxtLink>
     </nav>
   </header>
 
   <NuxtPage />
+  <ContactSection v-if="route.path !== '/'" />
 
   <footer class="site-footer page-frame" :class="{ 'site-footer--home': route.path === '/' }">
-    <div v-if="route.path !== '/'">
-      <p class="eyebrow type-meta">Have something in mind?</p>
-      <NuxtLink class="footer-contact type-footer-title" to="/#contact" :data-umami-event="analyticsEvents.contactClick">Let’s talk <AppIcon name="north-east" /></NuxtLink>
-    </div>
-    <p v-else class="footer-note type-quote">I’m drawn to a challenge. For this portfolio, I chose to limit the color palette to black and white, letting typography, space, and detail create the visual interest. <br /> Let me know if you like it!</p>
+    <p v-if="route.path === '/'" class="footer-note type-quote">I’m drawn to a challenge. For this portfolio, I chose to limit the color palette to black and white, letting typography, space, and detail create the visual interest. <br /> Let me know if you like it!</p>
     <div class="footer-bottom type-caption">
       <span>© {{ new Date().getFullYear() }} Kolos Káposzta</span>
       <div class="footer-links type-nav">
